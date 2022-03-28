@@ -8,9 +8,17 @@ build_property.PlatformNeutralAssembly =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = RocketElevatorREST
 build_property.RootNamespace = RocketElevatorREST
+<<<<<<< HEAD
 build_property.ProjectDir = /Users/jean-sebastiengotty/Programmation/Codeboxx/w8/Rocket_Elevator_Rest_API/Rocket_Elevator_REST/
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
 build_property.MSBuildProjectDirectory = /Users/jean-sebastiengotty/Programmation/Codeboxx/w8/Rocket_Elevator_Rest_API/Rocket_Elevator_REST
+=======
+build_property.ProjectDir = C:\Users\Martin\source\Odyssey\OdysseyWeek8\Rocket_Elevator_REST\
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\Martin\source\Odyssey\OdysseyWeek8\Rocket_Elevator_REST
+>>>>>>> development
 build_property._RazorSourceGeneratorDebug = 
