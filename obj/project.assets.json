@@ -9708,19 +9708,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\amara\\.nuget\\packages\\": {}
+    "C:\\Users\\Martin\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\amara\\Rocket_Elevator_Rest_API\\Rocket_Elevator_REST\\RocketElevatorREST.csproj",
+      "projectUniqueName": "C:\\Users\\Martin\\source\\Odyssey\\OdysseyWeek8\\Rocket_Elevator_REST\\RocketElevatorREST.csproj",
       "projectName": "RocketElevatorREST",
-      "projectPath": "C:\\Users\\amara\\Rocket_Elevator_Rest_API\\Rocket_Elevator_REST\\RocketElevatorREST.csproj",
-      "packagesPath": "C:\\Users\\amara\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\amara\\Rocket_Elevator_Rest_API\\Rocket_Elevator_REST\\obj\\",
+      "projectPath": "C:\\Users\\Martin\\source\\Odyssey\\OdysseyWeek8\\Rocket_Elevator_REST\\RocketElevatorREST.csproj",
+      "packagesPath": "C:\\Users\\Martin\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Martin\\source\\Odyssey\\OdysseyWeek8\\Rocket_Elevator_REST\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\amara\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\Martin\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
