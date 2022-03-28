@@ -3,13 +3,13 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace RocketElevatorREST.Models
 {
-    public class TodoContext : DbContext
+    public class ColumnsContext : DbContext
     {
-        public TodoContext(DbContextOptions<TodoContext> options)
+        public ColumnsContext(DbContextOptions<ColumnsContext> options)
             : base(options)
         {
         }
 
-        public DbSet<Battery> TodoItems { get; set; } = null!;
+        public DbSet<Columns> Columns { get; set; } = null!;
     }
 }
