@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using RocketElevatorREST.Models;
 
-public class BatteriesContext : DbContext
-{
-    public BatteriesContext(DbContextOptions<BatteriesContext> options)
-        : base(options)
+    public class BatteriesContext : DbContext
     {
-    }
+        public BatteriesContext (DbContextOptions<BatteriesContext> options)
+            : base(options)
+        {
+        }
 
-    public DbSet<RocketElevatorREST.Models.Batteries> batteries { get; set; }
-}
+        public DbSet<RocketElevatorREST.Models.Batteries> batteries { get; set; }
+    }
