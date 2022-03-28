@@ -12,47 +12,47 @@ namespace RocketElevatorREST.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BatteryController : ControllerBase
+    public class BatteriesController : ControllerBase
     {
-        private readonly BatteryContext _context;
+        private readonly BatteriesContext _context;
 
-        public BatteryController(BatteryContext context)
+        public BatteriesController(BatteriesContext context)
         {
             _context = context;
         }
 
-        // GET: api/Battery
+        // GET: api/Batteries
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Battery>>> GetBattery()
+        public async Task<ActionResult<IEnumerable<Batteries>>> GetBatteries()
         {
-            return await _context.Battery.ToListAsync();
+            return await _context.batteries.ToListAsync();
         }
 
-        // GET: api/Battery/5
+        // GET: api/Batteries/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Battery>> GetBattery(long id)
+        public async Task<ActionResult<Batteries>> GetBatteries(long id)
         {
-            var battery = await _context.Battery.FindAsync(id);
+            var batteries = await _context.batteries.FindAsync(id);
 
-            if (battery == null)
+            if (batteries == null)
             {
                 return NotFound();
             }
 
-            return battery;
+            return batteries;
         }
 
-        // PUT: api/Battery/5
+        // PUT: api/Batteries/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutBattery(long id, Battery battery)
+        public async Task<IActionResult> PutBatteries(long id, Batteries batteries)
         {
-            if (id != battery.Id)
+            if (id != batteries.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(battery).State = EntityState.Modified;
+            _context.Entry(batteries).State = EntityState.Modified;
 
             try
             {
@@ -60,7 +60,7 @@ namespace RocketElevatorREST.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!BatteryExists(id))
+                if (!BatteriesExists(id))
                 {
                     return NotFound();
                 }
@@ -73,36 +73,36 @@ namespace RocketElevatorREST.Controllers
             return NoContent();
         }
 
-        // POST: api/Battery
+        // POST: api/Batteries
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Battery>> PostBattery(Battery battery)
+        public async Task<ActionResult<Batteries>> PostBatteries(Batteries batteries)
         {
-            _context.Battery.Add(battery);
+            _context.batteries.Add(batteries);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetBattery", new { id = battery.Id }, battery);
+            return CreatedAtAction("GetBatteries", new { id = batteries.Id }, batteries);
         }
 
-        // DELETE: api/Battery/5
+        // DELETE: api/Batteries/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteBattery(long id)
+        public async Task<IActionResult> DeleteBatteries(long id)
         {
-            var battery = await _context.Battery.FindAsync(id);
-            if (battery == null)
+            var batteries = await _context.batteries.FindAsync(id);
+            if (batteries == null)
             {
                 return NotFound();
             }
 
-            _context.Battery.Remove(battery);
+            _context.batteries.Remove(batteries);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool BatteryExists(long id)
+        private bool BatteriesExists(long id)
         {
-            return _context.Battery.Any(e => e.Id == id);
+            return _context.batteries.Any(e => e.Id == id);
         }
     }
 }
