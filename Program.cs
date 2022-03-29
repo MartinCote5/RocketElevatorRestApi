@@ -20,6 +20,12 @@ builder.Services.AddDbContext<ColumnsContext>(options =>
         .EnableSensitiveDataLogging()
         .EnableDetailedErrors()
 );
+builder.Services.AddDbContext<ElevatorsContext>(options =>
+    options.UseMySql(connectionString, serverVersion)
+        .LogTo(Console.WriteLine, LogLevel.Information)
+        .EnableSensitiveDataLogging()
+        .EnableDetailedErrors()
+);
 // Add services to the container.
 
 builder.Services.AddControllers();
