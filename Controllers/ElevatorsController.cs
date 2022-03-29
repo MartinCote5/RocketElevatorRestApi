@@ -23,16 +23,16 @@ namespace RocketElevatorREST.Controllers
 
         // GET: api/Elevators
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Elevators>>> GetTodoItems()
+        public async Task<ActionResult<IEnumerable<Elevators>>> GetElevators()
         {
-            return await _context.TodoItems.ToListAsync();
+            return await _context.elevators.ToListAsync();
         }
 
         // GET: api/Elevators/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Elevators>> GetElevators(long id)
         {
-            var elevators = await _context.TodoItems.FindAsync(id);
+            var elevators = await _context.elevators.FindAsync(id);
 
             if (elevators == null)
             {
