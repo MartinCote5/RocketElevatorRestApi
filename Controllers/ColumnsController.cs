@@ -12,47 +12,47 @@ namespace RocketElevatorREST.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BatteriesController : ControllerBase
+    public class ColumnsController : ControllerBase
     {
-        private readonly BatteriesContext _context;
+        private readonly ColumnsContext _context;
 
-        public BatteriesController(BatteriesContext context)
+        public ColumnsController(ColumnsContext context)
         {
             _context = context;
         }
 
         // GET: api/Battery
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Batteries>>> GetBatteries()
+        public async Task<ActionResult<IEnumerable<Columns>>> GetColumns()
         {
-            return await _context.batteries.ToListAsync();
+            return await _context.columns.ToListAsync();
         }
 
         // GET: api/Battery/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Batteries>> GetBatteries(long id)
+        public async Task<ActionResult<Columns>> GetColumns(long id)
         {
-            var batteries = await _context.batteries.FindAsync(id);
+            var columns = await _context.columns.FindAsync(id);
 
-            if (batteries == null)
+            if (columns == null)
             {
                 return NotFound();
             }
 
-            return batteries;
+            return columns;
         }
 
         // PUT: api/Battery/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutBatteries(long id, Batteries batteries)
+        public async Task<IActionResult> PutColumns(long id, Columns columns)
         {
-            if (id != batteries.Id)
+            if (id != columns.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(batteries).State = EntityState.Modified;
+            _context.Entry(columns).State = EntityState.Modified;
 
             try
             {
@@ -60,7 +60,7 @@ namespace RocketElevatorREST.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!BatteriesExists(id))
+                if (!ColumnsExists(id))
                 {
                     return NotFound();
                 }
@@ -76,33 +76,33 @@ namespace RocketElevatorREST.Controllers
         // POST: api/Battery
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Batteries>> PostBatteries(Batteries batteries)
+        public async Task<ActionResult<Columns>> PostColumns(Columns columns)
         {
-            _context.batteries.Add(batteries);
+            _context.columns.Add(columns);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetBatteries", new { id = batteries.Id }, batteries);
+            return CreatedAtAction("GetColumns", new { id = columns.Id }, columns);
         }
 
         // DELETE: api/Battery/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteBatteries(long id)
+        public async Task<IActionResult> DeleteColumns(long id)
         {
-            var batteries = await _context.batteries.FindAsync(id);
-            if (batteries == null)
+            var columns = await _context.columns.FindAsync(id);
+            if (columns == null)
             {
                 return NotFound();
             }
 
-            _context.batteries.Remove(batteries);
+            _context.columns.Remove(columns);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool BatteriesExists(long id)
+        private bool ColumnsExists(long id)
         {
-            return _context.batteries.Any(e => e.Id == id);
+            return _context.columns.Any(e => e.Id == id);
         }
     }
 }
