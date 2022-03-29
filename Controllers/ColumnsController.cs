@@ -84,7 +84,7 @@ namespace RocketElevatorREST.Controllers
             return CreatedAtAction("GetColumns", new { id = columns.Id }, columns);
         }
 
-        // DELETE: api/Battery/5
+        // DELETE: api/Columns/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteColumns(long id)
         {
