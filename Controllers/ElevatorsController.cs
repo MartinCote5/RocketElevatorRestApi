@@ -22,12 +22,7 @@ namespace RocketElevatorREST.Controllers
         }
 
         // GET: api/Elevators
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Elevators>>> GetElevators()
-        {
-            return await _context.elevators.ToListAsync();
-        }
-
+        
         // GET: api/Elevators/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Elevators>> GetElevators(long id)
@@ -78,7 +73,7 @@ namespace RocketElevatorREST.Controllers
         [HttpPost]
         public async Task<ActionResult<Elevators>> PostElevators(Elevators elevators)
         {
-            _context.TodoItems.Add(elevators);
+            _context.elevators.Add(elevators);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetElevators", new { id = elevators.Id }, elevators);
@@ -88,13 +83,13 @@ namespace RocketElevatorREST.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteElevators(long id)
         {
-            var elevators = await _context.TodoItems.FindAsync(id);
+            var elevators = await _context.elevators.FindAsync(id);
             if (elevators == null)
             {
                 return NotFound();
             }
 
-            _context.TodoItems.Remove(elevators);
+            _context.elevators.Remove(elevators);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -102,7 +97,7 @@ namespace RocketElevatorREST.Controllers
 
         private bool ElevatorsExists(long id)
         {
-            return _context.TodoItems.Any(e => e.Id == id);
+            return _context.elevators.Any(e => e.Id == id);
         }
     }
 }
