@@ -37,6 +37,14 @@ namespace RocketElevatorREST.Controllers
             return elevators;
         }
 
+        [HttpGet("inactive")]
+        public async Task<ActionResult<IEnumerable<Elevators>>> GetInactive()
+        {
+            var elevators = await _context.elevators.Where(x => x.Status == "inactive").ToListAsync();
+
+            return elevators;
+        }
+
         // PUT: api/Elevators/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
