@@ -21,14 +21,14 @@ namespace RocketElevatorREST.Controllers
             _context = context;
         }
 
-        // GET: api/Battery
+        // GET: api/Columns
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Columns>>> GetColumns()
         {
             return await _context.columns.ToListAsync();
         }
 
-        // GET: api/Battery/5
+        // GET: api/Columns/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Columns>> GetColumns(long id)
         {
@@ -42,7 +42,7 @@ namespace RocketElevatorREST.Controllers
             return columns;
         }
 
-        // PUT: api/Battery/5
+        // PUT: api/Columns/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutColumns(long id, Columns columns)
@@ -73,7 +73,7 @@ namespace RocketElevatorREST.Controllers
             return NoContent();
         }
 
-        // POST: api/Battery
+        // POST: api/Columns
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<Columns>> PostColumns(Columns columns)
@@ -84,7 +84,7 @@ namespace RocketElevatorREST.Controllers
             return CreatedAtAction("GetColumns", new { id = columns.Id }, columns);
         }
 
-        // DELETE: api/Battery/5
+        // DELETE: api/Columns/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteColumns(long id)
         {
