@@ -14,21 +14,13 @@ builder.Services.AddDbContext<BatteriesContext>(options =>
         .EnableSensitiveDataLogging()
         .EnableDetailedErrors()
 );
-<<<<<<< HEAD
-
-builder.Services.AddDbContext<ElevatorsContext>(options =>
-=======
 builder.Services.AddDbContext<ColumnsContext>(options =>
->>>>>>> development
     options.UseMySql(connectionString, serverVersion)
         .LogTo(Console.WriteLine, LogLevel.Information)
         .EnableSensitiveDataLogging()
         .EnableDetailedErrors()
 );
-<<<<<<< HEAD
 
-=======
->>>>>>> development
 // Add services to the container.
 
 builder.Services.AddControllers();
