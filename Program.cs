@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+var connectionString = Environment.GetEnvironmentVariable("CONNECTION_STRING");
 var serverVersion = new MySqlServerVersion(new Version(8, 0, 27));
 
 builder.Services.AddDbContext<BatteriesContext>(options =>
@@ -15,6 +15,12 @@ builder.Services.AddDbContext<BatteriesContext>(options =>
         .EnableDetailedErrors()
 );
 builder.Services.AddDbContext<ColumnsContext>(options =>
+    options.UseMySql(connectionString, serverVersion)
+        .LogTo(Console.WriteLine, LogLevel.Information)
+        .EnableSensitiveDataLogging()
+        .EnableDetailedErrors()
+);
+builder.Services.AddDbContext<ElevatorsContext>(options =>
     options.UseMySql(connectionString, serverVersion)
         .LogTo(Console.WriteLine, LogLevel.Information)
         .EnableSensitiveDataLogging()
