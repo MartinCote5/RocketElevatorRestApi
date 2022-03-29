@@ -1,7 +1,6 @@
 {
   "format": 1,
   "restore": {
-<<<<<<< HEAD
     "/Users/jean-sebastiengotty/Programmation/Codeboxx/w8/Rocket_Elevator_Rest_API/Rocket_Elevator_REST/RocketElevatorREST.csproj": {}
   },
   "projects": {
@@ -16,22 +15,6 @@
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/jean-sebastiengotty/.nuget/NuGet/NuGet.Config"
-=======
-    "C:\\Users\\Martin\\source\\Odyssey\\OdysseyWeek8\\Rocket_Elevator_REST\\RocketElevatorREST.csproj": {}
-  },
-  "projects": {
-    "C:\\Users\\Martin\\source\\Odyssey\\OdysseyWeek8\\Rocket_Elevator_REST\\RocketElevatorREST.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "C:\\Users\\Martin\\source\\Odyssey\\OdysseyWeek8\\Rocket_Elevator_REST\\RocketElevatorREST.csproj",
-        "projectName": "RocketElevatorREST",
-        "projectPath": "C:\\Users\\Martin\\source\\Odyssey\\OdysseyWeek8\\Rocket_Elevator_REST\\RocketElevatorREST.csproj",
-        "packagesPath": "C:\\Users\\Martin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Martin\\source\\Odyssey\\OdysseyWeek8\\Rocket_Elevator_REST\\obj\\",
-        "projectStyle": "PackageReference",
-        "configFilePaths": [
-          "C:\\Users\\Martin\\AppData\\Roaming\\NuGet\\NuGet.Config"
->>>>>>> development
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -100,11 +83,7 @@
               "privateAssets": "all"
             }
           },
-<<<<<<< HEAD
           "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.200/RuntimeIdentifierGraph.json"
-=======
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
->>>>>>> development
         }
       }
     }

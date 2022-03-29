@@ -9708,16 +9708,11 @@
     ]
   },
   "packageFolders": {
-<<<<<<< HEAD
     "/Users/jean-sebastiengotty/.nuget/packages/": {}
-=======
-    "C:\\Users\\Martin\\.nuget\\packages\\": {}
->>>>>>> development
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-<<<<<<< HEAD
       "projectUniqueName": "/Users/jean-sebastiengotty/Programmation/Codeboxx/w8/Rocket_Elevator_Rest_API/Rocket_Elevator_REST/RocketElevatorREST.csproj",
       "projectName": "RocketElevatorREST",
       "projectPath": "/Users/jean-sebastiengotty/Programmation/Codeboxx/w8/Rocket_Elevator_Rest_API/Rocket_Elevator_REST/RocketElevatorREST.csproj",
@@ -9726,16 +9721,6 @@
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/jean-sebastiengotty/.nuget/NuGet/NuGet.Config"
-=======
-      "projectUniqueName": "C:\\Users\\Martin\\source\\Odyssey\\OdysseyWeek8\\Rocket_Elevator_REST\\RocketElevatorREST.csproj",
-      "projectName": "RocketElevatorREST",
-      "projectPath": "C:\\Users\\Martin\\source\\Odyssey\\OdysseyWeek8\\Rocket_Elevator_REST\\RocketElevatorREST.csproj",
-      "packagesPath": "C:\\Users\\Martin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Martin\\source\\Odyssey\\OdysseyWeek8\\Rocket_Elevator_REST\\obj\\",
-      "projectStyle": "PackageReference",
-      "configFilePaths": [
-        "C:\\Users\\Martin\\AppData\\Roaming\\NuGet\\NuGet.Config"
->>>>>>> development
       ],
       "originalTargetFrameworks": [
         "net6.0"
@@ -9804,12 +9789,16 @@
             "privateAssets": "all"
           }
         },
-<<<<<<< HEAD
         "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.200/RuntimeIdentifierGraph.json"
-=======
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
->>>>>>> development
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problème de lecture du fichier cache /Users/jean-sebastiengotty/Programmation/Codeboxx/w8/Rocket_Elevator_Rest_API/Rocket_Elevator_REST/obj/project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }
