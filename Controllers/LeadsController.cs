@@ -25,14 +25,14 @@ namespace RocketElevatorREST.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Leads>>> GetLeads()
         {
-            return await _context.Leads.ToListAsync();
+            return await _context.leads.ToListAsync();
         }
 
         // GET: api/Leads/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Leads>> GetLeads(long id)
         {
-            var leads = await _context.Leads.FindAsync(id);
+            var leads = await _context.leads.FindAsync(id);
 
             if (leads == null)
             {
@@ -78,7 +78,7 @@ namespace RocketElevatorREST.Controllers
         [HttpPost]
         public async Task<ActionResult<Leads>> PostLeads(Leads leads)
         {
-            _context.Leads.Add(leads);
+            _context.leads.Add(leads);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetLeads", new { id = leads.Id }, leads);
@@ -88,13 +88,13 @@ namespace RocketElevatorREST.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteLeads(long id)
         {
-            var leads = await _context.Leads.FindAsync(id);
+            var leads = await _context.leads.FindAsync(id);
             if (leads == null)
             {
                 return NotFound();
             }
 
-            _context.Leads.Remove(leads);
+            _context.leads.Remove(leads);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -102,7 +102,7 @@ namespace RocketElevatorREST.Controllers
 
         private bool LeadsExists(long id)
         {
-            return _context.Leads.Any(e => e.Id == id);
+            return _context.leads.Any(e => e.Id == id);
         }
     }
 }
