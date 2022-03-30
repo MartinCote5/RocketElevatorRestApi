@@ -15,24 +15,30 @@ namespace RocketElevatorREST.Controllers
     public class BuildingsController : ControllerBase
     {
         private readonly BuildingsContext _context;
+        private readonly BatteriesContext _btcontext;
+        private readonly ColumnsContext _colcontext;
+        private readonly ElevatorsContext _elcontext;
 
-        public BuildingsController(BuildingsContext context)
+        public BuildingsController(BuildingsContext context, BatteriesContext btcontext, ColumnsContext colcontext, ElevatorsContext elcontext)
         {
             _context = context;
+            _btcontext = btcontext;
+            _colcontext = colcontext;
+            _elcontext = elcontext;
         }
 
         // GET: api/Buildings
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Buildings>>> GetBuildings()
         {
-            return await _context.Buildings.ToListAsync();
+            return await _context.buildings.ToListAsync();
         }
 
         // GET: api/Buildings/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Buildings>> GetBuildings(long id)
         {
-            var buildings = await _context.Buildings.FindAsync(id);
+            var buildings = await _context.buildings.FindAsync(id);
 
             if (buildings == null)
             {
@@ -45,7 +51,7 @@ namespace RocketElevatorREST.Controllers
         [HttpGet("intervention")]
        public async Task<ActionResult<IEnumerable<Buildings>>> GetIntervention()
         {
-            var buildings = await _context.Buildings.ToListAsync();
+            var buildings = await _context.buildings.ToListAsync();
 
             return buildings;
         }
@@ -86,7 +92,7 @@ namespace RocketElevatorREST.Controllers
         [HttpPost]
         public async Task<ActionResult<Buildings>> PostBuildings(Buildings buildings)
         {
-            _context.Buildings.Add(buildings);
+            _context.buildings.Add(buildings);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetBuildings", new { id = buildings.Id }, buildings);
@@ -96,13 +102,13 @@ namespace RocketElevatorREST.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteBuildings(long id)
         {
-            var buildings = await _context.Buildings.FindAsync(id);
+            var buildings = await _context.buildings.FindAsync(id);
             if (buildings == null)
             {
                 return NotFound();
             }
 
-            _context.Buildings.Remove(buildings);
+            _context.buildings.Remove(buildings);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -110,7 +116,7 @@ namespace RocketElevatorREST.Controllers
 
         private bool BuildingsExists(long id)
         {
-            return _context.Buildings.Any(e => e.Id == id);
+            return _context.buildings.Any(e => e.Id == id);
         }
     }
 }

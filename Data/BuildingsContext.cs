@@ -14,5 +14,5 @@ using RocketElevatorREST.Models;
         {
         }
 
-        public DbSet<Buildings> Buildings { get; set; } = null!;
+        public DbSet<Buildings> buildings { get; set; } = null!;
     }
