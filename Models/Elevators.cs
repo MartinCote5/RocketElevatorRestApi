@@ -4,7 +4,6 @@ namespace RocketElevatorREST.Models
     {
         // TODO
         public long Id { get; set; }
-        public string? Status { get; set; }
-        
+        public string? Status { get; set; }   
     }
 }
