@@ -8,7 +8,7 @@ using RocketElevatorREST.Models;
 
 public class ColumnsContext : DbContext
 {
-    public ColumnsContext(DbContextOptions<BuildingsContext> options)
+    public ColumnsContext(DbContextOptions<ColumnsContext> options)
         : base(options)
     {
     }
