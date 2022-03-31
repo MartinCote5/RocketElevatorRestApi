@@ -45,14 +45,14 @@ namespace RocketElevatorREST.Controllers
         // PUT: api/Battery/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutBatteries(long id, Batteries batteries)
+        public async Task<IActionResult> PutBatteries(long id, Batteries battery)
         {
-            if (id != batteries.Id)
+            if (id != battery.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(batteries).State = EntityState.Modified;
+            _context.Entry(battery).State = EntityState.Modified;
 
             try
             {

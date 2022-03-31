@@ -29,17 +29,10 @@ namespace RocketElevatorREST.Controllers
         }
 
         // GET: api/Buildings/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Buildings>> GetBuildings(long id)
+        [HttpGet("intervention")]
+        public async Task<ActionResult<IEnumerable<Buildings>>> GetBuildings(long id)
         {
-            var buildings = await _context.Buildings.FindAsync(id);
-
-            if (buildings == null)
-            {
-                return NotFound();
-            }
-
-            return buildings;
+            return await _context.Buildings.ToListAsync();
         }
 
         // PUT: api/Buildings/5
