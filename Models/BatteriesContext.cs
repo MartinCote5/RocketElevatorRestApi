@@ -10,6 +10,6 @@ namespace RocketElevatorREST.Models
         {
         }
 
-        public DbSet<Batteries> TodoItems { get; set; } = null!;
+        public DbSet<Battery> TodoItems { get; set; } = null!;
     }
 }
