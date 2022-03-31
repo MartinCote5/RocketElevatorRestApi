@@ -2,14 +2,6 @@
 
 Week 8 - Offering and exposing a service on the Internet
 
-## Project made by:
-
-- Jean-Sébastien Gotty
-- Gabriel Stankunas
-- Myriam Amara
-- Samuel Laforme
-- Martin Cote
-
 ## Name of databases
 
 `samuellaforme` is the name for both PostgreSQL and MySQL databases hosted on the Codeboxx aws account.
