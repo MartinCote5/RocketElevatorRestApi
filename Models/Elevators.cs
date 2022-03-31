@@ -1,6 +1,6 @@
 namespace RocketElevatorREST.Models
 {
-    public class Elevators
+    public class Elevator
     {
         // TODO
         public long Id { get; set; }

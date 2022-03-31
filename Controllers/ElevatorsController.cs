@@ -25,7 +25,7 @@ namespace RocketElevatorREST.Controllers
         
         // GET: api/Elevators/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Elevators>> GetElevators(long id)
+        public async Task<ActionResult<Elevator>> GetElevators(long id)
         {
             var elevator = await _context.elevators.FindAsync(id);
 
@@ -38,7 +38,7 @@ namespace RocketElevatorREST.Controllers
         }
 
         [HttpGet("inactive")]
-        public async Task<ActionResult<IEnumerable<Elevators>>> GetInactive()
+        public async Task<ActionResult<IEnumerable<Elevator>>> GetInactive()
         {
             var elevator = await _context.elevators.Where(x => x.Status == "inactive").ToListAsync();
 
@@ -48,7 +48,7 @@ namespace RocketElevatorREST.Controllers
         // PUT: api/Elevators/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutElevators(long id, Elevators elevator)
+        public async Task<IActionResult> PutElevators(long id, Elevator elevator)
         {
             if (id != elevator.Id)
             {
@@ -79,7 +79,7 @@ namespace RocketElevatorREST.Controllers
         // POST: api/Elevators
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Elevators>> PostElevators(Elevators elevator)
+        public async Task<ActionResult<Elevator>> PostElevators(Elevator elevator)
         {
             _context.elevators.Add(elevator);
             await _context.SaveChangesAsync();

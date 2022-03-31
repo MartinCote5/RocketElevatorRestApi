@@ -23,14 +23,14 @@ namespace RocketElevatorREST.Controllers
 
         // GET: api/Buildings
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Buildings>>> GetBuildings()
+        public async Task<ActionResult<IEnumerable<Building>>> GetBuildings()
         {
             return await _context.Buildings.ToListAsync();
         }
 
         // GET: api/Buildings/5
         [HttpGet("intervention")]
-        public async Task<ActionResult<IEnumerable<Buildings>>> GetBuildings(long id)
+        public async Task<ActionResult<IEnumerable<Building>>> GetBuildings(long id)
         {
             return await _context.Buildings.ToListAsync();
         }
@@ -38,7 +38,7 @@ namespace RocketElevatorREST.Controllers
         // PUT: api/Buildings/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutBuildings(long id, Buildings buildings)
+        public async Task<IActionResult> PutBuildings(long id, Building buildings)
         {
             if (id != buildings.Id)
             {
@@ -69,7 +69,7 @@ namespace RocketElevatorREST.Controllers
         // POST: api/Buildings
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Buildings>> PostBuildings(Buildings buildings)
+        public async Task<ActionResult<Building>> PostBuildings(Building buildings)
         {
             _context.Buildings.Add(buildings);
             await _context.SaveChangesAsync();
@@ -81,13 +81,13 @@ namespace RocketElevatorREST.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteBuildings(long id)
         {
-            var buildings = await _context.Buildings.FindAsync(id);
-            if (buildings == null)
+            var building = await _context.Buildings.FindAsync(id);
+            if (building == null)
             {
                 return NotFound();
             }
 
-            _context.Buildings.Remove(buildings);
+            _context.Buildings.Remove(building);
             await _context.SaveChangesAsync();
 
             return NoContent();

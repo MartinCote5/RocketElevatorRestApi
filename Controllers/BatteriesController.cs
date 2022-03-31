@@ -88,13 +88,13 @@ namespace RocketElevatorREST.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteBatteries(long id)
         {
-            var batteries = await _context.batteries.FindAsync(id);
-            if (batteries == null)
+            var battery = await _context.batteries.FindAsync(id);
+            if (battery == null)
             {
                 return NotFound();
             }
 
-            _context.batteries.Remove(batteries);
+            _context.batteries.Remove(battery);
             await _context.SaveChangesAsync();
 
             return NoContent();

@@ -23,29 +23,29 @@ namespace RocketElevatorREST.Controllers
 
         // GET: api/Columns
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Columns>>> GetColumns()
+        public async Task<ActionResult<IEnumerable<Column>>> GetColumns()
         {
             return await _context.columns.ToListAsync();
         }
 
         // GET: api/Columns/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Columns>> GetColumns(long id)
+        public async Task<ActionResult<Column>> GetColumns(long id)
         {
-            var columns = await _context.columns.FindAsync(id);
+            var column = await _context.columns.FindAsync(id);
 
-            if (columns == null)
+            if (column == null)
             {
                 return NotFound();
             }
 
-            return columns;
+            return column;
         }
 
         // PUT: api/Columns/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutColumns(long id, Columns columns)
+        public async Task<IActionResult> PutColumns(long id, Column columns)
         {
             if (id != columns.Id)
             {
@@ -76,7 +76,7 @@ namespace RocketElevatorREST.Controllers
         // POST: api/Columns
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Columns>> PostColumns(Columns columns)
+        public async Task<ActionResult<Column>> PostColumns(Column columns)
         {
             _context.columns.Add(columns);
             await _context.SaveChangesAsync();
@@ -88,13 +88,13 @@ namespace RocketElevatorREST.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteColumns(long id)
         {
-            var columns = await _context.columns.FindAsync(id);
-            if (columns == null)
+            var column = await _context.columns.FindAsync(id);
+            if (column == null)
             {
                 return NotFound();
             }
 
-            _context.columns.Remove(columns);
+            _context.columns.Remove(column);
             await _context.SaveChangesAsync();
 
             return NoContent();
