@@ -3,13 +3,13 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace RocketElevatorREST.Models
 {
-    public class LeadsContext : DbContext
+    public class UsersContext : DbContext
     {
-        public LeadsContext(DbContextOptions<LeadsContext> options)
+        public UsersContext(DbContextOptions<UsersContext> options)
             : base(options)
         {
         }
 
-        public DbSet<Leads> Leads { get; set; } = null!;
+        public DbSet<Users> Users { get; set; } = null!;
     }
 }

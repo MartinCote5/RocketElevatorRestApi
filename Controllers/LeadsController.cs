@@ -15,18 +15,21 @@ namespace RocketElevatorREST.Controllers
     public class LeadsController : ControllerBase
     {
         private readonly LeadsContext _context;
+        private readonly UsersContext _userscontext;
 
-        public LeadsController(LeadsContext context)
+        public LeadsController(LeadsContext context, UsersContext userscontext)
         {
             _context = context;
+            _userscontext = userscontext;
         }
 
         // GET: api/Leads
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Leads>>> GetLeads()
+        public async Task<ActionResult<IEnumerable<Users>>> GetEmail(string email)
         {
-            return await _context.leads.ToListAsync();
+            return await _userscontext.users.Where(x => x.Email == email).ToListAsync();
         }
+        
 
         // GET: api/Leads/5
         [HttpGet("{id}")]
@@ -40,6 +43,12 @@ namespace RocketElevatorREST.Controllers
             }
 
             return leads;
+        }
+
+        [HttpGet("nonuser")]
+        public async Task<ActionResult<IEnumerable<Leads>>> GetNonuser()
+        {
+            return await _context.leads.ToListAsync();
         }
 
         // PUT: api/Leads/5
