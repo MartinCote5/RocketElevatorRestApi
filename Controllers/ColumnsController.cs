@@ -21,38 +21,32 @@ namespace RocketElevatorREST.Controllers
             _context = context;
         }
 
-        // GET: api/Columns
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Columns>>> GetColumns()
-        {
-            return await _context.columns.ToListAsync();
-        }
-
         // GET: api/Columns/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Columns>> GetColumns(long id)
+        public async Task<ActionResult<Column>> GetColumns(long id)
         {
-            var columns = await _context.columns.FindAsync(id);
+            var column = await _context.columns.FindAsync(id);
 
-            if (columns == null)
+            if (column == null)
             {
                 return NotFound();
             }
 
-            return columns;
+            return column;
         }
 
         // PUT: api/Columns/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutColumns(long id, Columns columns)
+        public async Task<IActionResult> PutColumns(long id, Column column)
         {
-            if (id != columns.Id)
+            if (id != column.Id)
             {
                 return BadRequest();
             }
-
-            _context.Entry(columns).State = EntityState.Modified;
+            var col = await _context.columns.Where(x => x.Id == id).ToListAsync();
+            col[0].Status = column.Status;
+            _context.Entry(col[0]).State = EntityState.Modified;
 
             try
             {
@@ -69,33 +63,6 @@ namespace RocketElevatorREST.Controllers
                     throw;
                 }
             }
-
-            return NoContent();
-        }
-
-        // POST: api/Columns
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<Columns>> PostColumns(Columns columns)
-        {
-            _context.columns.Add(columns);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetColumns", new { id = columns.Id }, columns);
-        }
-
-        // DELETE: api/Columns/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteColumns(long id)
-        {
-            var columns = await _context.columns.FindAsync(id);
-            if (columns == null)
-            {
-                return NotFound();
-            }
-
-            _context.columns.Remove(columns);
-            await _context.SaveChangesAsync();
 
             return NoContent();
         }

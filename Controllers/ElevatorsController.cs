@@ -20,42 +20,41 @@ namespace RocketElevatorREST.Controllers
         {
             _context = context;
         }
-
-        // GET: api/Elevators
         
         // GET: api/Elevators/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Elevators>> GetElevators(long id)
+        public async Task<ActionResult<Elevator>> GetElevators(long id)
         {
-            var elevators = await _context.elevators.FindAsync(id);
+            var elevator = await _context.elevators.FindAsync(id);
 
-            if (elevators == null)
+            if (elevator == null)
             {
                 return NotFound();
             }
 
-            return elevators;
+            return elevator;
         }
 
         [HttpGet("inactive")]
-        public async Task<ActionResult<IEnumerable<Elevators>>> GetInactive()
+        public async Task<ActionResult<IEnumerable<Elevator>>> GetInactive()
         {
-            var elevators = await _context.elevators.Where(x => x.Status == "inactive").ToListAsync();
+            var elevator = await _context.elevators.Where(x => x.Status == "inactive").ToListAsync();
 
-            return elevators;
+            return elevator;
         }
 
         // PUT: api/Elevators/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutElevators(long id, Elevators elevators)
+        public async Task<IActionResult> PutElevators(long id, Elevator elevator)
         {
-            if (id != elevators.Id)
+            if (id != elevator.Id)
             {
                 return BadRequest();
             }
-
-            _context.Entry(elevators).State = EntityState.Modified;
+            var ev = await _context.elevators.Where(x => x.Id == id).ToListAsync();
+            ev[0].Status = elevator.Status;
+            _context.Entry(ev[0]).State = EntityState.Modified;
 
             try
             {
@@ -72,33 +71,6 @@ namespace RocketElevatorREST.Controllers
                     throw;
                 }
             }
-
-            return NoContent();
-        }
-
-        // POST: api/Elevators
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<Elevators>> PostElevators(Elevators elevators)
-        {
-            _context.elevators.Add(elevators);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetElevators", new { id = elevators.Id }, elevators);
-        }
-
-        // DELETE: api/Elevators/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteElevators(long id)
-        {
-            var elevators = await _context.elevators.FindAsync(id);
-            if (elevators == null)
-            {
-                return NotFound();
-            }
-
-            _context.elevators.Remove(elevators);
-            await _context.SaveChangesAsync();
 
             return NoContent();
         }
