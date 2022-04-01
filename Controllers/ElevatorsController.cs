@@ -21,7 +21,7 @@ namespace RocketElevatorREST.Controllers
             _context = context;
         }
 
-        // GET: api/Elevators
+        
         
         // GET: api/Elevators/5
         [HttpGet("{id}")]
