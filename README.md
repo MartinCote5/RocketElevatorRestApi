@@ -15,6 +15,8 @@ To connect to a database, we use an environment variable (for informations about
 
 ## REST server endpoints
 
+To test the endpoints of the REST api,  you can take the Postman collection right here: [https://www.getpostman.com/collections/a1a215065e260c873829](https://www.getpostman.com/collections/a1a215065e260c873829)
+
 The server is hosted on an heroku platform which can be found at [https://rocketelevatorrestapih22.herokuapp.com/](https://rocketelevatorrestapih22.herokuapp.com/). What follows are the endpoints based of that url:
 
 - GET `/api/batteries/<x>` where x is the id of the desired battery
