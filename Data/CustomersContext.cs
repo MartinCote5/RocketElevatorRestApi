@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using RocketElevatorREST.Models;
 
-public class UsersContext : DbContext
+public class CustomersContext : DbContext
 {
-    public UsersContext(DbContextOptions<UsersContext> options)
+    public CustomersContext(DbContextOptions<CustomersContext> options)
         : base(options)
     {
     }
 
-    public DbSet<RocketElevatorREST.Models.Users> users { get; set; }
+    public DbSet<Customer> customers { get; set; }
 }
