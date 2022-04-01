@@ -13,8 +13,7 @@ using RocketElevatorREST.Models;
         {
         }
 
-        public DbSet<RocketElevatorREST.Models.Battery> batteries { get; set; }
+        public DbSet<Battery> batteries { get; set; }
     }
 
 
-    

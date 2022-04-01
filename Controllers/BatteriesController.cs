@@ -21,13 +21,6 @@ namespace RocketElevatorREST.Controllers
             _context = context;
         }
 
-        // GET: api/Battery
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Battery>>> GetBatteries()
-        {
-            return await _context.batteries.ToListAsync();
-        }
-
         // GET: api/Battery/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Battery>> GetBatteries(long id)

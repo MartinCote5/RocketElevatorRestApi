@@ -21,13 +21,6 @@ namespace RocketElevatorREST.Controllers
             _context = context;
         }
 
-        // GET: api/Columns
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Column>>> GetColumns()
-        {
-            return await _context.columns.ToListAsync();
-        }
-
         // GET: api/Columns/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Column>> GetColumns(long id)
