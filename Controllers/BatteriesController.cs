@@ -21,16 +21,9 @@ namespace RocketElevatorREST.Controllers
             _context = context;
         }
 
-        // GET: api/Battery
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Batteries>>> GetBatteries()
-        {
-            return await _context.batteries.ToListAsync();
-        }
-
         // GET: api/Battery/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Batteries>> GetBatteries(long id)
+        public async Task<ActionResult<Battery>> GetBatteries(long id)
         {
             var batteries = await _context.batteries.FindAsync(id);
 
@@ -45,14 +38,15 @@ namespace RocketElevatorREST.Controllers
         // PUT: api/Battery/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutBatteries(long id, Batteries batteries)
+        public async Task<IActionResult> PutBatteries(long id, Battery battery)
         {
-            if (id != batteries.Id)
+            if (id != battery.Id)
             {
                 return BadRequest();
             }
-
-            _context.Entry(batteries).State = EntityState.Modified;
+            var bat = await _context.batteries.Where(x => x.Id == id).ToListAsync();
+            bat[0].Status = battery.Status;
+            _context.Entry(bat[0]).State = EntityState.Modified;
 
             try
             {
@@ -69,33 +63,6 @@ namespace RocketElevatorREST.Controllers
                     throw;
                 }
             }
-
-            return NoContent();
-        }
-
-        // POST: api/Battery
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<Batteries>> PostBatteries(Batteries batteries)
-        {
-            _context.batteries.Add(batteries);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetBatteries", new { id = batteries.Id }, batteries);
-        }
-
-        // DELETE: api/Battery/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteBatteries(long id)
-        {
-            var batteries = await _context.batteries.FindAsync(id);
-            if (batteries == null)
-            {
-                return NotFound();
-            }
-
-            _context.batteries.Remove(batteries);
-            await _context.SaveChangesAsync();
 
             return NoContent();
         }

@@ -23,6 +23,7 @@ namespace RocketElevatorREST.Controllers
             _userscontext = userscontext;
         }
 
+<<<<<<< HEAD
         // GET: api/Leads
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Users>>> GetEmail(string email)
@@ -31,9 +32,11 @@ namespace RocketElevatorREST.Controllers
         }
         
 
+=======
+>>>>>>> development
         // GET: api/Leads/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Leads>> GetLeads(long id)
+        public async Task<ActionResult<Lead>> GetLeads(long id)
         {
             var leads = await _context.leads.FindAsync(id);
 
@@ -54,7 +57,7 @@ namespace RocketElevatorREST.Controllers
         // PUT: api/Leads/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutLeads(long id, Leads leads)
+        public async Task<IActionResult> PutLeads(long id, Lead leads)
         {
             if (id != leads.Id)
             {
@@ -82,6 +85,7 @@ namespace RocketElevatorREST.Controllers
             return NoContent();
         }
 
+<<<<<<< HEAD
         // POST: api/Leads
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
@@ -109,6 +113,8 @@ namespace RocketElevatorREST.Controllers
             return NoContent();
         }
 
+=======
+>>>>>>> development
         private bool LeadsExists(long id)
         {
             return _context.leads.Any(e => e.Id == id);

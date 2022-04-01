@@ -14,5 +14,11 @@ using RocketElevatorREST.Models;
         {
         }
 
+<<<<<<< HEAD
         public DbSet<Buildings> buildings { get; set; } = null!;
     }
+=======
+        public DbSet<Building> buildings { get; set; } = null!;
+    }
+}
+>>>>>>> development

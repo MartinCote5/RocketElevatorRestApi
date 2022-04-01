@@ -32,6 +32,12 @@ builder.Services.AddDbContext<BuildingsContext>(options =>
         .EnableSensitiveDataLogging()
         .EnableDetailedErrors()
 );
+builder.Services.AddDbContext<Building_detailsContext>(options =>
+    options.UseMySql(connectionString, serverVersion)
+        .LogTo(Console.WriteLine, LogLevel.Information)
+        .EnableSensitiveDataLogging()
+        .EnableDetailedErrors()
+);
 builder.Services.AddDbContext<LeadsContext>(options =>
     options.UseMySql(connectionString, serverVersion)
         .LogTo(Console.WriteLine, LogLevel.Information)
@@ -47,8 +53,8 @@ builder.Services.AddDbContext<UsersContext>(options =>
 // Add services to the container.
 
 builder.Services.AddControllers();
-builder.Services.AddDbContext<TodoContext>(opt =>
-    opt.UseInMemoryDatabase("TodoList"));
+// builder.Services.AddDbContext<TodoContext>(opt =>
+//     opt.UseInMemoryDatabase("TodoList"));
 //builder.Services.AddSwaggerGen(c =>
 //{
 //    c.SwaggerDoc("v1", new() { Title = "TodoApi", Version = "v1" });

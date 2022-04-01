@@ -13,5 +13,5 @@ public class ElevatorsContext : DbContext
     {
     }
 
-    public DbSet<RocketElevatorREST.Models.Elevators> elevators { get; set; }
+    public DbSet<Elevator> elevators { get; set; }
 }

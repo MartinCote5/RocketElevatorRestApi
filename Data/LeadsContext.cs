@@ -13,5 +13,9 @@ public class LeadsContext : DbContext
     {
     }
 
+<<<<<<< HEAD
     public DbSet<RocketElevatorREST.Models.Leads> leads { get; set; }
+=======
+    public DbSet<Lead> Leads { get; set; }
+>>>>>>> development
 }
