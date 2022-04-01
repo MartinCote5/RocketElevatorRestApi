@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using RocketElevatorREST.Models;
 
-namespace RocketElevatorREST.Models
-{
+
     public class BuildingsContext : DbContext
     {
         public BuildingsContext(DbContextOptions<BuildingsContext> options)
@@ -17,4 +16,4 @@ namespace RocketElevatorREST.Models
 
         public DbSet<Building> buildings { get; set; } = null!;
     }
-}
+

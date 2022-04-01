@@ -15,60 +15,43 @@ namespace RocketElevatorREST.Controllers
     public class LeadsController : ControllerBase
     {
         private readonly LeadsContext _context;
+        private readonly CustomersContext _cuscontext;
+        
 
-        public LeadsController(LeadsContext context)
+        public LeadsController(LeadsContext context, CustomersContext cuscontext)
         {
             _context = context;
+            _cuscontext = cuscontext;
         }
 
-        // GET: api/Leads/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Lead>> GetLeads(long id)
+        // GET: api/Leads
+        [HttpGet("{noncustomer}")]
+        public async Task<ActionResult<IEnumerable<Lead>>> GetEmail()
         {
-            var leads = await _context.Leads.FindAsync(id);
-
-            if (leads == null)
+            var customer = await _cuscontext.customers.ToListAsync();
+            List<string> customerEmailList = new List<string>();
+            foreach(Customer c in customer)
             {
-                return NotFound();
+               string customerEmail = c.email_of_the_company_contact;
+               customerEmailList.Add(customerEmail);
             }
-
-            return leads;
-        }
-
-        // PUT: api/Leads/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutLeads(long id, Lead leads)
-        {
-            if (id != leads.Id)
+            
+            DateTime dateOfThe30LastDays = DateTime.Now.AddDays(-30);
+            
+            var lead = await _context.leads.ToListAsync();
+            List<DateTime> leadCreationDateList = new List<DateTime>();
+            foreach(Lead l in lead)
             {
-                return BadRequest();
-            }
-
-            _context.Entry(leads).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!LeadsExists(id))
+                var leadCreationDate = l.created_at;
+                if(leadCreationDate >= dateOfThe30LastDays)
                 {
-                    return NotFound();
+                    leadCreationDateList.Add(leadCreationDate);
                 }
-                else
-                {
-                    throw;
-                }
+                
             }
-
-            return NoContent();
-        }
-
-        private bool LeadsExists(long id)
-        {
-            return _context.Leads.Any(e => e.Id == id);
+            
+            var leadListResult = await _context.leads.Where(x => !(customerEmailList.Contains(x.e_mail)) && leadCreationDateList.Contains(x.created_at)).ToListAsync();
+            return leadListResult;
         }
     }
 }

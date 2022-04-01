@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using RocketElevatorREST.Models;
 
-public class LeadsContext : DbContext
+public class CustomersContext : DbContext
 {
-    public LeadsContext(DbContextOptions<LeadsContext> options)
+    public CustomersContext(DbContextOptions<CustomersContext> options)
         : base(options)
     {
     }
 
-    public DbSet<Lead> leads { get; set; }
+    public DbSet<Customer> customers { get; set; }
 }

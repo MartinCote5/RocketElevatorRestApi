@@ -85,6 +85,14 @@ namespace RocketElevatorREST.Controllers
         //     return building;
         // }
 
+        [HttpGet("intervention")]
+       public async Task<ActionResult<IEnumerable<Building>>> GetIntervention()
+        {
+            var buildings = await _context.buildings.ToListAsync();
+
+            return buildings;
+        }
+
         // PUT: api/Buildings/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
