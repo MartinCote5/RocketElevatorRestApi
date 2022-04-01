@@ -51,7 +51,7 @@ namespace RocketElevatorREST.Controllers
             }
             
             var leadListResult = await _context.leads.Where(x => !(customerEmailList.Contains(x.e_mail)) && leadCreationDateList.Contains(x.created_at)).ToListAsync();
-            leadListResult = leadListResult.OrderBy(x => x.Id).ToList();
+            // leadListResult = leadListResult.OrderBy(x => x.Id).ToList();
             return leadListResult;
         }
     }

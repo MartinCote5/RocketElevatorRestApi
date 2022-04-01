@@ -34,7 +34,6 @@ namespace RocketElevatorREST.Controllers
         [HttpGet("{intervention}")]
         public async Task<ActionResult<IEnumerable<Building>>> GetBuildings()
         {
-            
             var elevator = await _econtext.elevators.Where(x => x.Status == "intervention").ToListAsync();        
             List<long> elevatorColumnIdList = new List<long>();
             foreach(Elevator e in elevator)
@@ -70,34 +69,15 @@ namespace RocketElevatorREST.Controllers
                buildingDetailBuildingIdList.Add(buildingDetailBuildingId);
             }
 
-             var building = await _context.buildings.Where(x => batteryBuildingIdList.Contains(x.Id) || buildingDetailBuildingIdList.Contains(x.Id) ).ToListAsync();   
-        
+            var building = await _context.buildings.Where(x => batteryBuildingIdList.Contains(x.Id) || buildingDetailBuildingIdList.Contains(x.Id)).ToListAsync();   
+            building = building.OrderBy(x => x.Id).ToList();
             return building;
         }
 
-        // GET: api/Buildings/5
-        // [HttpGet("intervention")]
-        // public async Task<ActionResult<IEnumerable<Building>>> GetIntervention()
-        // {
-        //     // return await _context.buildings.ToListAsync();
-        //     var building = await _context.buildings.Where(x => x.Id == 1).ToListAsync();
-
-        //     return building;
-        // }
-
-        [HttpGet("intervention")]
-       public async Task<ActionResult<IEnumerable<Building>>> GetIntervention()
-        {
-            var buildings = await _context.buildings.ToListAsync();
-
-            return buildings;
-        }
-
-        // PUT: api/Buildings/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+      
         [HttpPut("{id}")]
         public async Task<IActionResult> PutBuildings(long id, Building buildings)
-        {
+        {   
             if (id != buildings.Id)
             {
                 return BadRequest();
