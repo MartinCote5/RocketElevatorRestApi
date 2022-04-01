@@ -31,17 +31,11 @@ namespace RocketElevatorREST.Controllers
         }
 
         // GET: api/Buildings
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Building_detail>>> GetBuildings()
+        [HttpGet("{intervention}")]
+        public async Task<ActionResult<IEnumerable<Building>>> GetBuildings()
         {
             
-            var elevator = await _econtext.elevators.Where(x => x.Status == "intervention").ToListAsync();
-
-            
-            
-            // var elevatorIdArray =elevator[0].Id;
-            
-            
+            var elevator = await _econtext.elevators.Where(x => x.Status == "intervention").ToListAsync();        
             List<long> elevatorColumnIdList = new List<long>();
             foreach(Elevator e in elevator)
             {
@@ -60,22 +54,25 @@ namespace RocketElevatorREST.Controllers
 
             var battery = await _bcontext.batteries.Where(x => x.Status == "intervention" || columnBatteryIdList.Contains(x.Id)).ToListAsync();
 
-            // var ngg = elevator.AddRange(column);
-           
-            // var test = String.Concat(elevator, column);
+            List<long> batteryBuildingIdList = new List<long>();
+            foreach(Battery b in battery)
+            {
+               long batteryBuildingId = b.building_id;
+               batteryBuildingIdList.Add(batteryBuildingId);
+            }
 
-            var building_details = await _bdcontext.building_details.Where(x => x.information_Key == "status" &&  x.value == "intervention").ToListAsync();
+            var building_detail = await _bdcontext.building_details.Where(x => x.information_Key == "status" &&  x.value == "intervention").ToListAsync();
 
-            // foreach (RocketElevatorREST.Models.Elevator item in elevator)
-            // {
-            //     Console.Write("testing");
-            // }
-            
+            List<long> buildingDetailBuildingIdList = new List<long>();
+            foreach(Building_detail bd in building_detail)
+            {
+               long buildingDetailBuildingId = bd.building_id;
+               buildingDetailBuildingIdList.Add(buildingDetailBuildingId);
+            }
+
+             var building = await _context.buildings.Where(x => batteryBuildingIdList.Contains(x.Id) || buildingDetailBuildingIdList.Contains(x.Id) ).ToListAsync();   
         
-            return building_details;
-            // return await _context.buildings.ToListAsync(); 
-            
-
+            return building;
         }
 
         // GET: api/Buildings/5
