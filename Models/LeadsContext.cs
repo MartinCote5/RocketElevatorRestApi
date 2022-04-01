@@ -10,6 +10,6 @@ namespace RocketElevatorREST.Models
         {
         }
 
-        public DbSet<Leads> Leads { get; set; } = null!;
+        public DbSet<Lead> Leads { get; set; } = null!;
     }
 }

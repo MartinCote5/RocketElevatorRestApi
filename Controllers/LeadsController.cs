@@ -23,7 +23,6 @@ namespace RocketElevatorREST.Controllers
             _userscontext = userscontext;
         }
 
-<<<<<<< HEAD
         // GET: api/Leads
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Users>>> GetEmail(string email)
@@ -32,8 +31,6 @@ namespace RocketElevatorREST.Controllers
         }
         
 
-=======
->>>>>>> development
         // GET: api/Leads/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Lead>> GetLeads(long id)
@@ -49,7 +46,7 @@ namespace RocketElevatorREST.Controllers
         }
 
         [HttpGet("nonuser")]
-        public async Task<ActionResult<IEnumerable<Leads>>> GetNonuser()
+        public async Task<ActionResult<IEnumerable<Lead>>> GetNonuser()
         {
             return await _context.leads.ToListAsync();
         }
@@ -85,36 +82,6 @@ namespace RocketElevatorREST.Controllers
             return NoContent();
         }
 
-<<<<<<< HEAD
-        // POST: api/Leads
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<Leads>> PostLeads(Leads leads)
-        {
-            _context.leads.Add(leads);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetLeads", new { id = leads.Id }, leads);
-        }
-
-        // DELETE: api/Leads/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteLeads(long id)
-        {
-            var leads = await _context.leads.FindAsync(id);
-            if (leads == null)
-            {
-                return NotFound();
-            }
-
-            _context.leads.Remove(leads);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
-
-=======
->>>>>>> development
         private bool LeadsExists(long id)
         {
             return _context.leads.Any(e => e.Id == id);
