@@ -13,5 +13,5 @@ public class ColumnsContext : DbContext
     {
     }
 
-    public DbSet<RocketElevatorREST.Models.Column> columns { get; set; }
+    public DbSet<Column> columns { get; set; }
 }

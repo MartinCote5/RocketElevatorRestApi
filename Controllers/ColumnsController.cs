@@ -45,14 +45,15 @@ namespace RocketElevatorREST.Controllers
         // PUT: api/Columns/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutColumns(long id, Column columns)
+        public async Task<IActionResult> PutColumns(long id, Column column)
         {
-            if (id != columns.Id)
+            if (id != column.Id)
             {
                 return BadRequest();
             }
-
-            _context.Entry(columns).State = EntityState.Modified;
+            var col = await _context.columns.Where(x => x.Id == id).ToListAsync();
+            col[0].Status = column.Status;
+            _context.Entry(col[0]).State = EntityState.Modified;
 
             try
             {

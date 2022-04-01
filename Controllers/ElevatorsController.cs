@@ -54,8 +54,9 @@ namespace RocketElevatorREST.Controllers
             {
                 return BadRequest();
             }
-
-            _context.Entry(elevator).State = EntityState.Modified;
+            var ev = await _context.elevators.Where(x => x.Id == id).ToListAsync();
+            ev[0].Status = elevator.Status;
+            _context.Entry(ev[0]).State = EntityState.Modified;
 
             try
             {
