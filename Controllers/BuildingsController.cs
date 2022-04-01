@@ -15,15 +15,15 @@ namespace RocketElevatorREST.Controllers
     public class BuildingsController : ControllerBase
     {
         private readonly BuildingsContext _context;
-        private readonly BuildingDetailsContext _bdcontext;
+        // private readonly BuildingDetailsContext _bdcontext;
         private readonly BatteriesContext _bcontext;
         private readonly ColumnsContext _ccontext;
         private readonly ElevatorsContext _econtext;
 
-        public BuildingsController(BuildingsContext context, BuildingDetailsContext bdcontext, BatteriesContext bcontext, ElevatorsContext econtext, ColumnsContext ccontext)
+        public BuildingsController(BuildingsContext context, BatteriesContext bcontext, ElevatorsContext econtext, ColumnsContext ccontext)
         {
             _context = context;
-            _bdcontext = bdcontext;
+            // _bdcontext = bdcontext;
             _bcontext = bcontext;
             _ccontext = ccontext;
             _econtext = econtext;
@@ -64,7 +64,7 @@ namespace RocketElevatorREST.Controllers
            
             // var test = String.Concat(elevator, column);
 
-
+            // var building_details = await _bdcontext.building_details.Where(x => x.information_Key == "status" ||  x.value == "intervention").ToListAsync();
 
             // foreach (RocketElevatorREST.Models.Elevator item in elevator)
             // {
