@@ -6,15 +6,13 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using RocketElevatorREST.Models;
 
-namespace RocketElevatorREST.Models
-{
-    public class BuildingsContext : DbContext
+
+    public class Building_detailsContext : DbContext
     {
-        public BuildingsContext(DbContextOptions<BuildingsContext> options)
+        public Building_detailsContext(DbContextOptions<Building_detailsContext> options)
             : base(options)
         {
         }
 
-        public DbSet<Building> buildings { get; set; } = null!;
+        public DbSet<Building_detail> building_details { get; set; } = null!;
     }
-}

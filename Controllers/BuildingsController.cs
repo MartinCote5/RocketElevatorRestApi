@@ -15,37 +15,80 @@ namespace RocketElevatorREST.Controllers
     public class BuildingsController : ControllerBase
     {
         private readonly BuildingsContext _context;
+        private readonly Building_detailsContext _bdcontext;
+        private readonly BatteriesContext _bcontext;
+        private readonly ColumnsContext _ccontext;
+        private readonly ElevatorsContext _econtext;
 
-        public BuildingsController(BuildingsContext context)
+        public BuildingsController(BuildingsContext context,Building_detailsContext bdcontext, BatteriesContext bcontext, ElevatorsContext econtext, ColumnsContext ccontext)
         {
             _context = context;
+            _bdcontext = bdcontext;
+            _bcontext = bcontext;
+            _ccontext = ccontext;
+            _econtext = econtext;
+            
         }
 
         // GET: api/Buildings
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Buildings>>> GetBuildings()
+        [HttpGet("{intervention}")]
+        public async Task<ActionResult<IEnumerable<Building>>> GetBuildings()
         {
-            return await _context.Buildings.ToListAsync();
+            
+            var elevator = await _econtext.elevators.Where(x => x.Status == "intervention").ToListAsync();        
+            List<long> elevatorColumnIdList = new List<long>();
+            foreach(Elevator e in elevator)
+            {
+               long elevatorColumnId = e.column_id;
+               elevatorColumnIdList.Add(elevatorColumnId);
+            }
+
+            var column = await _ccontext.columns.Where(x => x.Status == "intervention" || elevatorColumnIdList.Contains(x.Id)).ToListAsync();
+
+            List<long> columnBatteryIdList = new List<long>();
+            foreach(Column c in column)
+            {
+               long columnBatteryId = c.battery_id;
+               columnBatteryIdList.Add(columnBatteryId);
+            }
+
+            var battery = await _bcontext.batteries.Where(x => x.Status == "intervention" || columnBatteryIdList.Contains(x.Id)).ToListAsync();
+
+            List<long> batteryBuildingIdList = new List<long>();
+            foreach(Battery b in battery)
+            {
+               long batteryBuildingId = b.building_id;
+               batteryBuildingIdList.Add(batteryBuildingId);
+            }
+
+            var building_detail = await _bdcontext.building_details.Where(x => x.information_Key == "status" &&  x.value == "intervention").ToListAsync();
+
+            List<long> buildingDetailBuildingIdList = new List<long>();
+            foreach(Building_detail bd in building_detail)
+            {
+               long buildingDetailBuildingId = bd.building_id;
+               buildingDetailBuildingIdList.Add(buildingDetailBuildingId);
+            }
+
+             var building = await _context.buildings.Where(x => batteryBuildingIdList.Contains(x.Id) || buildingDetailBuildingIdList.Contains(x.Id) ).ToListAsync();   
+        
+            return building;
         }
 
         // GET: api/Buildings/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Buildings>> GetBuildings(long id)
-        {
-            var buildings = await _context.Buildings.FindAsync(id);
+        // [HttpGet("intervention")]
+        // public async Task<ActionResult<IEnumerable<Building>>> GetIntervention()
+        // {
+        //     // return await _context.buildings.ToListAsync();
+        //     var building = await _context.buildings.Where(x => x.Id == 1).ToListAsync();
 
-            if (buildings == null)
-            {
-                return NotFound();
-            }
-
-            return buildings;
-        }
+        //     return building;
+        // }
 
         // PUT: api/Buildings/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutBuildings(long id, Buildings buildings)
+        public async Task<IActionResult> PutBuildings(long id, Building buildings)
         {
             if (id != buildings.Id)
             {
@@ -72,37 +115,10 @@ namespace RocketElevatorREST.Controllers
 
             return NoContent();
         }
-
-        // POST: api/Buildings
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<Buildings>> PostBuildings(Buildings buildings)
-        {
-            _context.Buildings.Add(buildings);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetBuildings", new { id = buildings.Id }, buildings);
-        }
-
-        // DELETE: api/Buildings/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteBuildings(long id)
-        {
-            var buildings = await _context.Buildings.FindAsync(id);
-            if (buildings == null)
-            {
-                return NotFound();
-            }
-
-            _context.Buildings.Remove(buildings);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
-
+        
         private bool BuildingsExists(long id)
         {
-            return _context.Buildings.Any(e => e.Id == id);
+            return _context.buildings.Any(e => e.Id == id);
         }
     }
 }

@@ -13,5 +13,5 @@ public class LeadsContext : DbContext
     {
     }
 
-    public DbSet<RocketElevatorREST.Models.Leads> Leads { get; set; }
+    public DbSet<Lead> Leads { get; set; }
 }

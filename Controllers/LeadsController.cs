@@ -21,16 +21,9 @@ namespace RocketElevatorREST.Controllers
             _context = context;
         }
 
-        // GET: api/Leads
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Leads>>> GetLeads()
-        {
-            return await _context.Leads.ToListAsync();
-        }
-
         // GET: api/Leads/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Leads>> GetLeads(long id)
+        public async Task<ActionResult<Lead>> GetLeads(long id)
         {
             var leads = await _context.Leads.FindAsync(id);
 
@@ -45,7 +38,7 @@ namespace RocketElevatorREST.Controllers
         // PUT: api/Leads/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutLeads(long id, Leads leads)
+        public async Task<IActionResult> PutLeads(long id, Lead leads)
         {
             if (id != leads.Id)
             {
@@ -69,33 +62,6 @@ namespace RocketElevatorREST.Controllers
                     throw;
                 }
             }
-
-            return NoContent();
-        }
-
-        // POST: api/Leads
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<Leads>> PostLeads(Leads leads)
-        {
-            _context.Leads.Add(leads);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetLeads", new { id = leads.Id }, leads);
-        }
-
-        // DELETE: api/Leads/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteLeads(long id)
-        {
-            var leads = await _context.Leads.FindAsync(id);
-            if (leads == null)
-            {
-                return NotFound();
-            }
-
-            _context.Leads.Remove(leads);
-            await _context.SaveChangesAsync();
 
             return NoContent();
         }
