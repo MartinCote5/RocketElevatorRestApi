@@ -15,25 +15,76 @@ namespace RocketElevatorREST.Controllers
     public class BuildingsController : ControllerBase
     {
         private readonly BuildingsContext _context;
+        // private readonly BuildingDetailsContext _bdcontext;
+        private readonly BatteriesContext _bcontext;
+        private readonly ColumnsContext _ccontext;
+        private readonly ElevatorsContext _econtext;
 
-        public BuildingsController(BuildingsContext context)
+        public BuildingsController(BuildingsContext context, BatteriesContext bcontext, ElevatorsContext econtext, ColumnsContext ccontext)
         {
             _context = context;
+            // _bdcontext = bdcontext;
+            _bcontext = bcontext;
+            _ccontext = ccontext;
+            _econtext = econtext;
+            
         }
 
         // GET: api/Buildings
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Building>>> GetBuildings()
+        public async Task<ActionResult<IEnumerable<Column>>> GetBuildings()
         {
-            return await _context.Buildings.ToListAsync();
+            
+            var elevator = await _econtext.elevators.Where(x => x.Status == "intervention").ToListAsync();
+
+            
+            
+            // var elevatorIdArray =elevator[0].Id;
+            
+            
+            List<long> elevatorColumnIdList = new List<long>();
+            foreach(Elevator e in elevator)
+            {
+               long elevatorColumnId = e.column_id;
+               elevatorColumnIdList.Add(elevatorColumnId);
+            }
+
+            var column = await _ccontext.columns.Where(x => x.Status == "intervention" || elevatorColumnIdList.Contains(x.Id)).ToListAsync();
+
+            /*List<long> x = new List<long>();
+            foreach(Column c in column)
+            {
+               long columnId = c.battery_id;
+               elevatorColumnIdList.Add(columnId);
+            }*/
+
+            // var ngg = elevator.AddRange(column);
+           
+            // var test = String.Concat(elevator, column);
+
+
+
+            // foreach (RocketElevatorREST.Models.Elevator item in elevator)
+            // {
+            //     Console.Write("testing");
+            // }
+            
+        
+            return column;
+            // return await _context.buildings.ToListAsync(); 
+            
+
         }
 
         // GET: api/Buildings/5
-        [HttpGet("intervention")]
-        public async Task<ActionResult<IEnumerable<Building>>> GetBuildings(long id)
-        {
-            return await _context.Buildings.ToListAsync();
-        }
+        // [HttpGet("intervention")]
+        // public async Task<ActionResult<IEnumerable<Building>>> GetIntervention()
+        // {
+        //     // return await _context.buildings.ToListAsync();
+        //     var building = await _context.buildings.Where(x => x.Id == 1).ToListAsync();
+
+        //     return building;
+        // }
 
         // PUT: api/Buildings/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
@@ -71,7 +122,7 @@ namespace RocketElevatorREST.Controllers
         [HttpPost]
         public async Task<ActionResult<Building>> PostBuildings(Building buildings)
         {
-            _context.Buildings.Add(buildings);
+            _context.buildings.Add(buildings);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetBuildings", new { id = buildings.Id }, buildings);
@@ -81,13 +132,13 @@ namespace RocketElevatorREST.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteBuildings(long id)
         {
-            var building = await _context.Buildings.FindAsync(id);
+            var building = await _context.buildings.FindAsync(id);
             if (building == null)
             {
                 return NotFound();
             }
 
-            _context.Buildings.Remove(building);
+            _context.buildings.Remove(building);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -95,7 +146,7 @@ namespace RocketElevatorREST.Controllers
 
         private bool BuildingsExists(long id)
         {
-            return _context.Buildings.Any(e => e.Id == id);
+            return _context.buildings.Any(e => e.Id == id);
         }
     }
 }

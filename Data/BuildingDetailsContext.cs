@@ -8,13 +8,13 @@ using RocketElevatorREST.Models;
 
 namespace RocketElevatorREST.Models
 {
-    public class BuildingsContext : DbContext
+    public class BuildingDetailsContext : DbContext
     {
-        public BuildingsContext(DbContextOptions<BuildingsContext> options)
+        public BuildingDetailsContext(DbContextOptions<BuildingsContext> options)
             : base(options)
         {
         }
 
-        public DbSet<Building> buildings { get; set; } = null!;
+        public DbSet<Building> building_details { get; set; } = null!;
     }
 }
