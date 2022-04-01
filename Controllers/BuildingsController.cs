@@ -77,9 +77,7 @@ namespace RocketElevatorREST.Controllers
       
         [HttpPut("{id}")]
         public async Task<IActionResult> PutBuildings(long id, Building buildings)
-        {
-            var x = buildings.Id;
-            
+        {   
             if (id != buildings.Id)
             {
                 return BadRequest();
