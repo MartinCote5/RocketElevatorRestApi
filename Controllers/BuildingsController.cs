@@ -34,9 +34,6 @@ namespace RocketElevatorREST.Controllers
         [HttpGet("{intervention}")]
         public async Task<ActionResult<IEnumerable<Building>>> GetBuildings()
         {
-            var gogo = await _bdcontext.building_details.Where(x => x.email == "intervention").ToListAsync(); 
-            var test = await _context.buildings.ToListAsync(); 
-            var x = test.id[1];
             var elevator = await _econtext.elevators.Where(x => x.Status == "intervention").ToListAsync();        
             List<long> elevatorColumnIdList = new List<long>();
             foreach(Elevator e in elevator)
