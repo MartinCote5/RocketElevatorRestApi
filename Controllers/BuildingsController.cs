@@ -34,7 +34,9 @@ namespace RocketElevatorREST.Controllers
         [HttpGet("{intervention}")]
         public async Task<ActionResult<IEnumerable<Building>>> GetBuildings()
         {
-            
+            var gogo = await _bdcontext.building_details.Where(x => x.email == "intervention").ToListAsync(); 
+            var test = await _context.buildings.ToListAsync(); 
+            var x = test.id[1];
             var elevator = await _econtext.elevators.Where(x => x.Status == "intervention").ToListAsync();        
             List<long> elevatorColumnIdList = new List<long>();
             foreach(Elevator e in elevator)
@@ -75,21 +77,12 @@ namespace RocketElevatorREST.Controllers
             return building;
         }
 
-        // GET: api/Buildings/5
-        // [HttpGet("intervention")]
-        // public async Task<ActionResult<IEnumerable<Building>>> GetIntervention()
-        // {
-        //     // return await _context.buildings.ToListAsync();
-        //     var building = await _context.buildings.Where(x => x.Id == 1).ToListAsync();
-
-        //     return building;
-        // }
-
-        // PUT: api/Buildings/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+      
         [HttpPut("{id}")]
         public async Task<IActionResult> PutBuildings(long id, Building buildings)
         {
+            var x = buildings.Id;
+            
             if (id != buildings.Id)
             {
                 return BadRequest();
