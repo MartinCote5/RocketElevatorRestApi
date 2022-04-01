@@ -67,33 +67,6 @@ namespace RocketElevatorREST.Controllers
             return NoContent();
         }
 
-        // POST: api/Columns
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<Column>> PostColumns(Column columns)
-        {
-            _context.columns.Add(columns);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetColumns", new { id = columns.Id }, columns);
-        }
-
-        // DELETE: api/Columns/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteColumns(long id)
-        {
-            var column = await _context.columns.FindAsync(id);
-            if (column == null)
-            {
-                return NotFound();
-            }
-
-            _context.columns.Remove(column);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
-
         private bool ColumnsExists(long id)
         {
             return _context.columns.Any(e => e.Id == id);

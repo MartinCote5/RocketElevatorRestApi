@@ -67,33 +67,6 @@ namespace RocketElevatorREST.Controllers
             return NoContent();
         }
 
-        // POST: api/Battery
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<Battery>> PostBatteries(Battery batteries)
-        {
-            _context.batteries.Add(batteries);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetBatteries", new { id = batteries.Id }, batteries);
-        }
-
-        // DELETE: api/Battery/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteBatteries(long id)
-        {
-            var battery = await _context.batteries.FindAsync(id);
-            if (battery == null)
-            {
-                return NotFound();
-            }
-
-            _context.batteries.Remove(battery);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
-
         private bool BatteriesExists(long id)
         {
             return _context.batteries.Any(e => e.Id == id);

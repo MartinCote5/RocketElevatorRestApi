@@ -20,8 +20,6 @@ namespace RocketElevatorREST.Controllers
         {
             _context = context;
         }
-
-        
         
         // GET: api/Elevators/5
         [HttpGet("{id}")]
@@ -73,33 +71,6 @@ namespace RocketElevatorREST.Controllers
                     throw;
                 }
             }
-
-            return NoContent();
-        }
-
-        // POST: api/Elevators
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<Elevator>> PostElevators(Elevator elevator)
-        {
-            _context.elevators.Add(elevator);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetElevators", new { id = elevator.Id }, elevator);
-        }
-
-        // DELETE: api/Elevators/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteElevators(long id)
-        {
-            var elevator = await _context.elevators.FindAsync(id);
-            if (elevator == null)
-            {
-                return NotFound();
-            }
-
-            _context.elevators.Remove(elevator);
-            await _context.SaveChangesAsync();
 
             return NoContent();
         }
