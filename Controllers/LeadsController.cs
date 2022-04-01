@@ -27,7 +27,8 @@ namespace RocketElevatorREST.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Users>>> GetEmail(string email)
         {
-            return await _userscontext.users.Where(x => x.Email == email).ToListAsync();
+            
+            return await _userscontext.users.Where(x => x.Email == "mathieu.houde@codeboxx.biz").ToListAsync();
         }
         
 
@@ -45,8 +46,8 @@ namespace RocketElevatorREST.Controllers
             return leads;
         }
 
-        [HttpGet("nonuser")]
-        public async Task<ActionResult<IEnumerable<Lead>>> GetNonuser()
+        [HttpGet("{nonuser}")]
+        public async Task<ActionResult<IEnumerable<Lead>>> GetLeads()
         {
             return await _context.leads.ToListAsync();
         }
