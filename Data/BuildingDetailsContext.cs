@@ -10,11 +10,11 @@ namespace RocketElevatorREST.Models
 {
     public class BuildingDetailsContext : DbContext
     {
-        public BuildingDetailsContext(DbContextOptions<BuildingsContext> options)
+        public BuildingDetailsContext(DbContextOptions<BuildingDetailsContext> options)
             : base(options)
         {
         }
 
-        public DbSet<Building> building_details { get; set; } = null!;
+        public DbSet<RocketElevatorREST.Models.Building_details> building_details { get; set; } = null!;
     }
 }

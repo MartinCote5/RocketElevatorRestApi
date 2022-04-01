@@ -15,15 +15,15 @@ namespace RocketElevatorREST.Controllers
     public class BuildingsController : ControllerBase
     {
         private readonly BuildingsContext _context;
-        // private readonly BuildingDetailsContext _bdcontext;
+        private readonly BuildingDetailsContext _bdcontext;
         private readonly BatteriesContext _bcontext;
         private readonly ColumnsContext _ccontext;
         private readonly ElevatorsContext _econtext;
 
-        public BuildingsController(BuildingsContext context, BatteriesContext bcontext, ElevatorsContext econtext, ColumnsContext ccontext)
+        public BuildingsController(BuildingsContext context, BuildingDetailsContext bdcontext, BatteriesContext bcontext, ElevatorsContext econtext, ColumnsContext ccontext)
         {
             _context = context;
-            // _bdcontext = bdcontext;
+            _bdcontext = bdcontext;
             _bcontext = bcontext;
             _ccontext = ccontext;
             _econtext = econtext;
@@ -32,7 +32,7 @@ namespace RocketElevatorREST.Controllers
 
         // GET: api/Buildings
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Column>>> GetBuildings()
+        public async Task<ActionResult<IEnumerable<Battery>>> GetBuildings()
         {
             
             var elevator = await _econtext.elevators.Where(x => x.Status == "intervention").ToListAsync();
@@ -51,12 +51,14 @@ namespace RocketElevatorREST.Controllers
 
             var column = await _ccontext.columns.Where(x => x.Status == "intervention" || elevatorColumnIdList.Contains(x.Id)).ToListAsync();
 
-            /*List<long> x = new List<long>();
+            List<long> columnBatteryIdList = new List<long>();
             foreach(Column c in column)
             {
-               long columnId = c.battery_id;
-               elevatorColumnIdList.Add(columnId);
-            }*/
+               long columnBatteryId = c.battery_id;
+               columnBatteryIdList.Add(columnBatteryId);
+            }
+
+            var battery = await _bcontext.batteries.Where(x => x.Status == "intervention" || columnBatteryIdList.Contains(x.Id)).ToListAsync();
 
             // var ngg = elevator.AddRange(column);
            
@@ -70,7 +72,7 @@ namespace RocketElevatorREST.Controllers
             // }
             
         
-            return column;
+            return battery;
             // return await _context.buildings.ToListAsync(); 
             
 

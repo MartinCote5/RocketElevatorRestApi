@@ -15,6 +15,6 @@ namespace RocketElevatorREST.Models
         {
         }
 
-        public DbSet<Building> buildings { get; set; } = null!;
+        public DbSet<RocketElevatorREST.Models.Building> buildings { get; set; } = null!;
     }
 }
