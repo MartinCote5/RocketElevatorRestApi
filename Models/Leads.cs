@@ -4,6 +4,6 @@ namespace RocketElevatorREST.Models
     {
         // TODO
         public long Id { get; set; }
-        public string? Email_of_the_company_contact { get; set; }
+        public string? E_mail { get; set; }
     }
 }
