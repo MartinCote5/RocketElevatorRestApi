@@ -69,8 +69,9 @@ namespace RocketElevatorREST.Controllers
                buildingDetailBuildingIdList.Add(buildingDetailBuildingId);
             }
 
-             var building = await _context.buildings.Where(x => batteryBuildingIdList.Contains(x.Id) || buildingDetailBuildingIdList.Contains(x.Id) ).ToListAsync();   
-        
+            var building = await _context.buildings.Where(x => batteryBuildingIdList.Contains(x.Id) || buildingDetailBuildingIdList.Contains(x.Id)).ToListAsync();   
+            
+            building = building.OrderBy(x => x.Id).ToList();
             return building;
         }
 
