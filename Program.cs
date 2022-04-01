@@ -32,6 +32,12 @@ builder.Services.AddDbContext<BuildingsContext>(options =>
         .EnableSensitiveDataLogging()
         .EnableDetailedErrors()
 );
+builder.Services.AddDbContext<Building_detailsContext>(options =>
+    options.UseMySql(connectionString, serverVersion)
+        .LogTo(Console.WriteLine, LogLevel.Information)
+        .EnableSensitiveDataLogging()
+        .EnableDetailedErrors()
+);
 builder.Services.AddDbContext<LeadsContext>(options =>
     options.UseMySql(connectionString, serverVersion)
         .LogTo(Console.WriteLine, LogLevel.Information)

@@ -15,15 +15,15 @@ namespace RocketElevatorREST.Controllers
     public class BuildingsController : ControllerBase
     {
         private readonly BuildingsContext _context;
-        // private readonly BuildingDetailsContext _bdcontext;
+        private readonly Building_detailsContext _bdcontext;
         private readonly BatteriesContext _bcontext;
         private readonly ColumnsContext _ccontext;
         private readonly ElevatorsContext _econtext;
 
-        public BuildingsController(BuildingsContext context, BatteriesContext bcontext, ElevatorsContext econtext, ColumnsContext ccontext)
+        public BuildingsController(BuildingsContext context,Building_detailsContext bdcontext, BatteriesContext bcontext, ElevatorsContext econtext, ColumnsContext ccontext)
         {
             _context = context;
-            // _bdcontext = bdcontext;
+            _bdcontext = bdcontext;
             _bcontext = bcontext;
             _ccontext = ccontext;
             _econtext = econtext;
@@ -32,7 +32,7 @@ namespace RocketElevatorREST.Controllers
 
         // GET: api/Buildings
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Battery>>> GetBuildings()
+        public async Task<ActionResult<IEnumerable<Building_detail>>> GetBuildings()
         {
             
             var elevator = await _econtext.elevators.Where(x => x.Status == "intervention").ToListAsync();
@@ -64,7 +64,7 @@ namespace RocketElevatorREST.Controllers
            
             // var test = String.Concat(elevator, column);
 
-            // var building_details = await _bdcontext.building_details.Where(x => x.information_Key == "status" ||  x.value == "intervention").ToListAsync();
+            var building_details = await _bdcontext.building_details.Where(x => x.information_Key == "status" &&  x.value == "intervention").ToListAsync();
 
             // foreach (RocketElevatorREST.Models.Elevator item in elevator)
             // {
@@ -72,7 +72,7 @@ namespace RocketElevatorREST.Controllers
             // }
             
         
-            return battery;
+            return building_details;
             // return await _context.buildings.ToListAsync(); 
             
 
