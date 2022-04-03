@@ -5,7 +5,8 @@ using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var connectionString = Environment.GetEnvironmentVariable("CONNECTION_STRING");
+// var connectionString = Environment.GetEnvironmentVariable("server=localhost;database=rocket-elevators;user=martincote;password=dragonballz");
+string connectionString = "server=localhost;database=rocket-elevators;user=martincote;password=dragonballz";
 var serverVersion = new MySqlServerVersion(new Version(8, 0, 27));
 
 builder.Services.AddDbContext<BatteriesContext>(options =>
