@@ -42,3 +42,6 @@ Here to note, the id in the body AND the requested url (`<x>`) have to be the sa
 
 ## Explanatory video
 
+
+
+https://www.postman.com/collections/5d3f43a20db118ff8e78
