@@ -36,25 +36,31 @@ namespace RocketElevatorREST.Controllers
         }
 
         [HttpGet("pendingRequest")]
-        public async Task<ActionResult<IEnumerable<Intervention>>> GetInactive()
+        public async Task<ActionResult<IEnumerable<Intervention>>> GetInterventionRequestRecords()
         {
-            var interventionStatusPending = await _context.interventions.Where(x => x.Status == "pending").ToListAsync();
-            List<string> interventionStatusPendingList = new List<string>();
-            foreach(Intervention i in interventionStatusPending)
-            {
-               string eachInterventionStatusPending = i.Status;
-               interventionStatusPendingList.Add(eachInterventionStatusPending);
-            }
+            // var interventionStatusPending = await _context.interventions.Where(x => x.Status == "pending").ToListAsync();
+            // List<string> interventionStatusPendingList = new List<string>();
+            // foreach(Intervention i in interventionStatusPending)
+            // {
+            //    string eachInterventionStatusPending = i.Status;
+            //    interventionStatusPendingList.Add(eachInterventionStatusPending);
+            // }
 
-            var interventionEmptyStartDate = await _context.interventions.Where(x => x.start_date_and_time_of_the_intervention == null).ToListAsync();
-            List<DateTime?> interventionEmptyStartDateList = new List<DateTime?>();
-            foreach(Intervention i in interventionEmptyStartDate)
-            {
-               var eachInterventionEmptyStartDate = i.start_date_and_time_of_the_intervention;
-               interventionEmptyStartDateList.Add(eachInterventionEmptyStartDate);
-            }
+            // var interventionEmptyStartDate = await _context.interventions.Where(x => x.start_date_and_time_of_the_intervention == null).ToListAsync();
+            // List<DateTime?> interventionEmptyStartDateList = new List<DateTime?>();
+            // foreach(Intervention i in interventionEmptyStartDate)
+            // {
+            //    var eachInterventionEmptyStartDate = i.start_date_and_time_of_the_intervention;
+            //    interventionEmptyStartDateList.Add(eachInterventionEmptyStartDate);
+            // }
 
-            var intervention = await _context.interventions.Where(x => interventionStatusPendingList.Contains(x.Status) && interventionEmptyStartDateList.Contains(x.start_date_and_time_of_the_intervention)).ToListAsync();   
+            // var intervention = await _context.interventions.Where(x => interventionStatusPendingList.Contains(x.Status) && interventionEmptyStartDateList.Contains(x.start_date_and_time_of_the_intervention)).ToListAsync();   
+            // return intervention;
+
+            var intervention = await _context.interventions.Where(x => x.Status == "Pending" && x.start_date_and_time_of_the_intervention == null).ToListAsync();
+            
+            
+            
             return intervention;
         }
 
