@@ -51,6 +51,12 @@ builder.Services.AddDbContext<CustomersContext>(options =>
         .EnableSensitiveDataLogging()
         .EnableDetailedErrors()
 );
+builder.Services.AddDbContext<InterventionsContext>(options =>
+    options.UseMySql(connectionString, serverVersion)
+        .LogTo(Console.WriteLine, LogLevel.Information)
+        .EnableSensitiveDataLogging()
+        .EnableDetailedErrors()
+);
 // Add services to the container.
 
 builder.Services.AddControllers();
