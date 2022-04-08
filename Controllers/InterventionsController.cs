@@ -76,8 +76,11 @@ namespace RocketElevatorREST.Controllers
             var interv = await _context.interventions.Where(x => x.Id == id).ToListAsync();
 
             DateTime datenow = DateTime.Now;
+            interv[0].result = "Incomplete";
             interv[0].Status = "InProgress";
             interv[0].start_date_and_time_of_the_intervention = datenow;
+            interv[0].end_date_and_time_of_the_intervention = null;
+            
 
             _context.Entry(interv[0]).State = EntityState.Modified;
 
@@ -112,6 +115,7 @@ namespace RocketElevatorREST.Controllers
             var interv = await _context.interventions.Where(x => x.Id == id).ToListAsync();
             
             DateTime datenow = DateTime.Now;
+            interv[0].result = "Completed";
             interv[0].Status = "Completed";
             interv[0].end_date_and_time_of_the_intervention = datenow;
 
