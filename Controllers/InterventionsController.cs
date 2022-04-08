@@ -21,51 +21,15 @@ namespace RocketElevatorREST.Controllers
             _context = context;
         }
 
-        // GET: api/Interventions/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Intervention>> GetInterventions(long id)
-        {
-            var intervention = await _context.interventions.FindAsync(id);
-
-            if (intervention == null)
-            {
-                return NotFound();
-            }
-
-            return intervention;
-        }
-
+        // GET: api/Interventions/pendingRequest
         [HttpGet("pendingRequest")]
         public async Task<ActionResult<IEnumerable<Intervention>>> GetInterventionRequestRecords()
         {
-            // var interventionStatusPending = await _context.interventions.Where(x => x.Status == "pending").ToListAsync();
-            // List<string> interventionStatusPendingList = new List<string>();
-            // foreach(Intervention i in interventionStatusPending)
-            // {
-            //    string eachInterventionStatusPending = i.Status;
-            //    interventionStatusPendingList.Add(eachInterventionStatusPending);
-            // }
-
-            // var interventionEmptyStartDate = await _context.interventions.Where(x => x.start_date_and_time_of_the_intervention == null).ToListAsync();
-            // List<DateTime?> interventionEmptyStartDateList = new List<DateTime?>();
-            // foreach(Intervention i in interventionEmptyStartDate)
-            // {
-            //    var eachInterventionEmptyStartDate = i.start_date_and_time_of_the_intervention;
-            //    interventionEmptyStartDateList.Add(eachInterventionEmptyStartDate);
-            // }
-
-            // var intervention = await _context.interventions.Where(x => interventionStatusPendingList.Contains(x.Status) && interventionEmptyStartDateList.Contains(x.start_date_and_time_of_the_intervention)).ToListAsync();   
-            // return intervention;
-
             var intervention = await _context.interventions.Where(x => x.Status == "Pending" && x.start_date_and_time_of_the_intervention == null).ToListAsync();
-            
-            
-            
             return intervention;
         }
 
-        // PUT: api/Interventions/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        // PUT: api/Interventions/inProgress/2
         [HttpPut("inProgress/{id}")]
         public async Task<IActionResult> PutInterventionsInProgress(long id, Intervention intervention)
         {
@@ -103,8 +67,7 @@ namespace RocketElevatorREST.Controllers
             return NoContent();
         }
 
-          // PUT: api/Interventions/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        // PUT: api/Interventions/Completed/4
         [HttpPut("completed/{id}")]
         public async Task<IActionResult> PutInterventionsCompleted(long id, Intervention intervention)
         {
