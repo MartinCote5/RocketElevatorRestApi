@@ -35,7 +35,7 @@ namespace RocketElevatorREST.Controllers
             return intervention;
         }
 
-         [HttpGet("pendingRequest")]
+        [HttpGet("pendingRequest")]
         public async Task<ActionResult<IEnumerable<Intervention>>> GetInactive()
         {
             var interventionStatusPending = await _context.interventions.Where(x => x.Status == "pending").ToListAsync();
