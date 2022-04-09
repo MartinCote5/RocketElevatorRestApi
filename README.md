@@ -1,10 +1,10 @@
 # Rocket Elevator REST API
 
-Week 8 - Offering and exposing a service on the Internet
+Week 9 - Consolidation
 
 ## Name of databases
 
-`samuellaforme` is the name for both PostgreSQL and MySQL databases hosted on the Codeboxx aws account.
+`MartinCote` is the name for MySQL databases hosted on the Codeboxx aws account.
 
 ## How to connect to the databases with our service
 
@@ -17,7 +17,7 @@ To connect to a database, we use an environment variable (for informations about
 
 To test the endpoints of the REST api,  you can take the Postman collection right here: [https://www.getpostman.com/collections/a1a215065e260c873829](https://www.getpostman.com/collections/a1a215065e260c873829)
 
-The server is hosted on an heroku platform which can be found at [https://rocketelevatorrestapih22.herokuapp.com/](https://rocketelevatorrestapih22.herokuapp.com/). What follows are the endpoints based of that url:
+The server is hosted on an heroku platform which can be found at [heroku-rocketelevators-martinc.herokuapp.com/](https://rocketelevatorrestapih22.herokuapp.com/). What follows are the endpoints based of that url:
 
 - GET `/api/batteries/<x>` where x is the id of the desired battery
 - GET `/api/elevators/<x>` where x is the id of the desired elevator
@@ -40,8 +40,23 @@ Here to note, the id in the body AND the requested url (`<x>`) have to be the sa
 - PUT `/api/elevators/<x>` to modify the status value of the elevator x
 - PUT `/api/columns/<x>` to modify the status value of the column x
 
+
+## NEW REST server endpoints 
+
+-a collection for postman to test my get and put request : 
+
+-https://www.postman.com/collections/5d3f43a20db118ff8e78
+
+
+-OR 
+
+- GET `api/Interventions/pendingRequest` to get all interventions status to pending and with no start date of the intervention
+- PUT `api/Interventions/inProgress/<x>` where x is the id of the desired intervention, it change the status to in progress and the present time and date at the start of the intervention
+- PUT `api/Interventions/inProgress/<x>` where x is the id of the desired intervention, it change the status and the result to completed and the present time and date at the end of the intervention
+
+
 ## Explanatory video
 
 
 
-https://www.postman.com/collections/5d3f43a20db118ff8e78
+-https://youtu.be/Mw0LUl3LTfQ
