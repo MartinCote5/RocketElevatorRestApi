@@ -24,7 +24,7 @@ namespace RocketElevatorREST.Controllers
         }
 
 
-        // GET: api/Customers/5
+        // GET: api/Customers/{email}
         [HttpGet("{email}")]
         public async Task<ActionResult<Customer>> GetCustomerForPortal(string email)
         {

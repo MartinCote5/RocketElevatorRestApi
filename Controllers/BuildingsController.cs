@@ -19,15 +19,34 @@ namespace RocketElevatorREST.Controllers
         private readonly BatteriesContext _bcontext;
         private readonly ColumnsContext _ccontext;
         private readonly ElevatorsContext _econtext;
+        private readonly CustomersContext _cuscontext;
 
-        public BuildingsController(BuildingsContext context,Building_detailsContext bdcontext, BatteriesContext bcontext, ElevatorsContext econtext, ColumnsContext ccontext)
+        public BuildingsController(BuildingsContext context,Building_detailsContext bdcontext, BatteriesContext bcontext, ElevatorsContext econtext, ColumnsContext ccontext, CustomersContext cuscontext)
         {
             _context = context;
             _bdcontext = bdcontext;
             _bcontext = bcontext;
             _ccontext = ccontext;
             _econtext = econtext;
+            _cuscontext = cuscontext;
             
+        }
+
+        // GET: api/Customers/{email}
+        [HttpGet("portal/{id}")]
+        public async Task<ActionResult<IEnumerable<Building>>> GetBuildingForPortal(long id)
+        {
+            Customer customer = _cuscontext.customers.Where(c => c.Id == id).First();
+            Console.WriteLine("-------------------------");
+            Console.WriteLine(customer.Id);
+            Console.WriteLine("-------------------------");
+            var building = await _context.buildings.Where(b => b.customer_id == customer.Id).ToListAsync(); 
+            // var elevator = await _econtext.elevators.Where(x => x.Status == "intervention").ToListAsync();  
+            if (building == null)
+            {
+                return NotFound();
+            }
+            return building;
         }
 
         // GET: api/Buildings

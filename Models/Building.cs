@@ -4,5 +4,7 @@ namespace RocketElevatorREST.Models
     {
         // TODO
         public long Id { get; set; }
+        public long customer_id { get; set; }
+
     }
 }
