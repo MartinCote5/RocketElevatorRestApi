@@ -16,10 +16,12 @@ namespace RocketElevatorREST.Controllers
     {
         private readonly ElevatorsContext _context;
         private readonly CustomersContext _cuscontext;
-        public ElevatorsController(ElevatorsContext context, CustomersContext cuscontext)
+        private readonly ColumnsContext _colcontext;
+        public ElevatorsController(ElevatorsContext context, CustomersContext cuscontext, ColumnsContext colcontext)
         {
             _context = context;
             _cuscontext = cuscontext;
+            _colcontext = colcontext;
         }
         
          // GET: api/Elevators/
@@ -27,6 +29,19 @@ namespace RocketElevatorREST.Controllers
         public async Task<ActionResult<IEnumerable<Elevator>>> GetElevatorsAll()
         {
             return await _context.elevators.ToListAsync();                 
+        }
+
+        // GET: api/Elevators/{id}
+        [HttpGet("portal/{id}")]
+        public async Task<ActionResult<IEnumerable<Elevator>>> GetElevatorsForPortal(long id)
+        {
+            Column column = _colcontext.columns.Where(b => b.Id == id).First(); 
+            var elevator = await _context.elevators.Where(c => c.column_id == column.Id).ToListAsync(); 
+            if (elevator == null)
+            {
+                return NotFound();
+            }
+            return elevator;
         }
 
     
@@ -52,15 +67,6 @@ namespace RocketElevatorREST.Controllers
             return elevator;
         }
 
-        // [HttpGet("portalCustomerElevators")]
-        // public async Task<ActionResult<IEnumerable<Elevator>>> GetPortalCustomerElevators()
-        // {
-            // var elevator = await _context.elevators.Where(x => x.Status == "inactive").ToListAsync();
-            // var customer = await _cuscontext.customers.Where(x => x.e_mail == "inactive").ToListAsync();
-            // var x = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            
-        //     return elevator;
-        // }
         // PUT: api/Elevators/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
