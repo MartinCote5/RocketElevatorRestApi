@@ -36,12 +36,8 @@ namespace RocketElevatorREST.Controllers
         [HttpGet("portal/{id}")]
         public async Task<ActionResult<IEnumerable<Building>>> GetBuildingForPortal(long id)
         {
-            Customer customer = _cuscontext.customers.Where(c => c.Id == id).First();
-            Console.WriteLine("-------------------------");
-            Console.WriteLine(customer.Id);
-            Console.WriteLine("-------------------------");
+            Customer customer = _cuscontext.customers.Where(c => c.Id == id).First(); 
             var building = await _context.buildings.Where(b => b.customer_id == customer.Id).ToListAsync(); 
-            // var elevator = await _econtext.elevators.Where(x => x.Status == "intervention").ToListAsync();  
             if (building == null)
             {
                 return NotFound();

@@ -15,16 +15,31 @@ namespace RocketElevatorREST.Controllers
     public class BatteriesController : ControllerBase
     {
         private readonly BatteriesContext _context;
+        private readonly BuildingsContext _bcontext;
 
-        public BatteriesController(BatteriesContext context)
+        public BatteriesController(BatteriesContext context, BuildingsContext bcontext)
         {
             _context = context;
+            _bcontext = bcontext;
         }
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Battery>>> GetBatteries()
         {
             return await _context.batteries.ToListAsync();
+        }
+
+        // GET: api/Buildings/{id}
+        [HttpGet("portal/{id}")]
+        public async Task<ActionResult<IEnumerable<Battery>>> GetBatteryForPortal(long id)
+        {
+            Building building = _bcontext.buildings.Where(c => c.Id == id).First(); 
+            var battery = await _context.batteries.Where(b => b.building_id == building.Id).ToListAsync(); 
+            if (building == null)
+            {
+                return NotFound();
+            }
+            return battery;
         }
 
         // GET: api/Battery/5
