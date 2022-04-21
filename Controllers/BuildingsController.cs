@@ -32,7 +32,7 @@ namespace RocketElevatorREST.Controllers
             
         }
 
-        // GET: api/Customers/{email}
+        // GET: api/Buildings/{id}
         [HttpGet("portal/{id}")]
         public async Task<ActionResult<IEnumerable<Building>>> GetBuildingForPortal(long id)
         {

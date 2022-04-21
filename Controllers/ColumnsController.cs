@@ -23,6 +23,19 @@ namespace RocketElevatorREST.Controllers
             _bcontext = bcontext;
         }
 
+        // GET: api/Columns/{id}
+        [HttpGet("portal/{id}")]
+        public async Task<ActionResult<IEnumerable<Column>>> GetColumnsForPortal(long id)
+        {
+            Battery battery = _bcontext.batteries.Where(b => b.Id == id).First(); 
+            var column = await _context.columns.Where(c => c.battery_id == battery.Id).ToListAsync(); 
+            if (column == null)
+            {
+                return NotFound();
+            }
+            return column;
+        }
+
         // GET: api/Columns/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Column>> GetColumns(long id)
@@ -34,18 +47,6 @@ namespace RocketElevatorREST.Controllers
                 return NotFound();
             }
 
-            return column;
-        }
-
-        [HttpGet("portal/{id}")]
-        public async Task<ActionResult<IEnumerable<Column>>> GetColumnsForPortal(long id)
-        {
-            Battery battery = _bcontext.batteries.Where(b => b.Id == id).First(); 
-            var column = await _context.columns.Where(c => c.battery_id == battery.Id).ToListAsync(); 
-            if (column == null)
-            {
-                return NotFound();
-            }
             return column;
         }
 
