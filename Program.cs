@@ -59,7 +59,7 @@ builder.Services.AddDbContext<InterventionsContext>(options =>
         .EnableSensitiveDataLogging()
         .EnableDetailedErrors()
 );
-builder.Services.AddDbContext<CustomersContext>(options =>
+builder.Services.AddDbContext<UsersContext>(options =>
     options.UseMySql(connectionString, serverVersion)
         .LogTo(Console.WriteLine, LogLevel.Information)
         .EnableSensitiveDataLogging()

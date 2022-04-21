@@ -26,9 +26,7 @@ namespace RocketElevatorREST.Controllers
         [HttpGet()]
         public async Task<ActionResult<IEnumerable<Elevator>>> GetElevatorsAll()
         {
-            // var x = new {email = User.Identity.Name};  
-            return await _context.elevators.ToListAsync(); 
-                         
+            return await _context.elevators.ToListAsync();                 
         }
 
     
