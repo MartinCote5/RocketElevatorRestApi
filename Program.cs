@@ -6,7 +6,8 @@ using Microsoft.Extensions.DependencyInjection;
 var builder = WebApplication.CreateBuilder(args);
 
 // var connectionString = Environment.GetEnvironmentVariable("server=localhost;database=rocket-elevators;user=martincote;password=dragonballz");
-string connectionString = "server=codeboxx.cq6zrczewpu2.us-east-1.rds.amazonaws.com;database=MartinCote;user=codeboxx;password=Codeboxx1!";
+string connectionString = "server=localhost;database=rocket-elevators;user=martincote;password=dragonballz";
+// string connectionString = "server=codeboxx.cq6zrczewpu2.us-east-1.rds.amazonaws.com;database=MartinCote;user=codeboxx;password=Codeboxx1!";
 
 var serverVersion = new MySqlServerVersion(new Version(8, 0, 27));
 
@@ -53,6 +54,12 @@ builder.Services.AddDbContext<CustomersContext>(options =>
         .EnableDetailedErrors()
 );
 builder.Services.AddDbContext<InterventionsContext>(options =>
+    options.UseMySql(connectionString, serverVersion)
+        .LogTo(Console.WriteLine, LogLevel.Information)
+        .EnableSensitiveDataLogging()
+        .EnableDetailedErrors()
+);
+builder.Services.AddDbContext<CustomersContext>(options =>
     options.UseMySql(connectionString, serverVersion)
         .LogTo(Console.WriteLine, LogLevel.Information)
         .EnableSensitiveDataLogging()
