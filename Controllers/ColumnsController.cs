@@ -15,10 +15,12 @@ namespace RocketElevatorREST.Controllers
     public class ColumnsController : ControllerBase
     {
         private readonly ColumnsContext _context;
+        private readonly BatteriesContext _bcontext;
 
-        public ColumnsController(ColumnsContext context)
+        public ColumnsController(ColumnsContext context, BatteriesContext bcontext)
         {
             _context = context;
+            _bcontext = bcontext;
         }
 
         // GET: api/Columns/5
@@ -32,6 +34,18 @@ namespace RocketElevatorREST.Controllers
                 return NotFound();
             }
 
+            return column;
+        }
+
+        [HttpGet("portal/{id}")]
+        public async Task<ActionResult<IEnumerable<Column>>> GetColumnsForPortal(long id)
+        {
+            Battery battery = _bcontext.batteries.Where(b => b.Id == id).First(); 
+            var column = await _context.columns.Where(c => c.battery_id == battery.Id).ToListAsync(); 
+            if (column == null)
+            {
+                return NotFound();
+            }
             return column;
         }
 

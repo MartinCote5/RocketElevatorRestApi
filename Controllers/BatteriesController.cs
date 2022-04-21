@@ -33,9 +33,9 @@ namespace RocketElevatorREST.Controllers
         [HttpGet("portal/{id}")]
         public async Task<ActionResult<IEnumerable<Battery>>> GetBatteryForPortal(long id)
         {
-            Building building = _bcontext.buildings.Where(c => c.Id == id).First(); 
+            Building building = _bcontext.buildings.Where(buil => buil.Id == id).First(); 
             var battery = await _context.batteries.Where(b => b.building_id == building.Id).ToListAsync(); 
-            if (building == null)
+            if (battery == null)
             {
                 return NotFound();
             }
