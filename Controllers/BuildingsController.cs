@@ -46,6 +46,8 @@ namespace RocketElevatorREST.Controllers
             return building;
         }
 
+        
+
 
         // GET: api/Buildings/portal/{id}
         [HttpGet("portal/{id}")]
@@ -61,7 +63,7 @@ namespace RocketElevatorREST.Controllers
         }
 
         // GET: api/Buildings
-        [HttpGet("{intervention}")]
+        [HttpGet("intervention")]
         public async Task<ActionResult<IEnumerable<Building>>> GetBuildings()
         {
             var elevator = await _econtext.elevators.Where(x => x.Status == "intervention").ToListAsync();        
