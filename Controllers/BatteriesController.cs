@@ -33,7 +33,7 @@ namespace RocketElevatorREST.Controllers
         [HttpGet("portal/{id}")]
         public async Task<ActionResult<IEnumerable<Battery>>> GetBatteryForPortal(long id)
         {
-            Building building = _bcontext.buildings.Where(buil => buil.Id == id).First(); 
+            var building = _bcontext.buildings.Where(buil => buil.Id == id).First(); 
             var battery = await _context.batteries.Where(b => b.building_id == building.Id).ToListAsync(); 
             if (battery == null)
             {
@@ -41,6 +41,34 @@ namespace RocketElevatorREST.Controllers
             }
             return battery;
         }
+
+
+        // GET: api/Batteries/{id}
+        // [HttpGet("portal/{id}")]
+        // public async Task<ActionResult<IEnumerable<Battery>>> GetBatteryForPortal2(long id)
+        // {
+
+        //     var battery = await _context.batteries.Where(bat => bat.Id == id).ToListAsync(); 
+
+           
+
+        //     List<long> batteryBuildingList = new List<long>();
+        //     foreach(Battery b in battery)
+        //     {
+        //        long batteryBuildingId = b.building_id;
+        //        batteryBuildingList.Add(batteryBuildingId);
+        //     }
+            
+        //     var building = await _bcontext.buildings.Where(b => batteryBuildingList.Contains(b.Id)).ToListAsync();
+        //     if (battery == null)
+        //     {
+        //         return NotFound();
+        //     }
+        //     return battery;
+        // }
+
+
+        
 
         // GET: api/Battery/5
         [HttpGet("{id}")]
