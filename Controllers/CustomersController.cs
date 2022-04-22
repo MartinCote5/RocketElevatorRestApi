@@ -46,7 +46,7 @@ namespace RocketElevatorREST.Controllers
         }
 
         // GET: api/Customers/Products/{id}
-        [HttpGet("Produts/{id}")]
+        [HttpGet("Products/{id}")]
         public async Task<ActionResult<Product>> GetCustomerProducts(long id)
         {
             Customer customer = await _context.customers.FindAsync(id);
