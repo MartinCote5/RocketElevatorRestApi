@@ -1,6 +1,6 @@
 # Rocket Elevator REST API
 
-Week 9 - Consolidation
+Week 11 - Understanding the .NET Framework
 
 ## Name of databases
 
@@ -41,7 +41,7 @@ Here to note, the id in the body AND the requested url (`<x>`) have to be the sa
 - PUT `/api/columns/<x>` to modify the status value of the column x
 
 
-## NEW REST server endpoints 
+## ADDED REST server endpoints 
 
 -a collection for postman to test my get and put request : 
 
@@ -53,6 +53,16 @@ Here to note, the id in the body AND the requested url (`<x>`) have to be the sa
 - GET `api/Interventions/pendingRequest` to get all interventions status to pending and with no start date of the intervention
 - PUT `api/Interventions/inProgress/<x>` where x is the id of the desired intervention, it change the status to in progress and the present time and date at the start of the intervention
 - PUT `api/Interventions/inProgress/<x>` where x is the id of the desired intervention, it change the status and the result to completed and the present time and date at the end of the intervention
+
+
+## ADDED MORE REST server endpoints 
+
+- GET `api//Customers/{email}` To get a customer information from a User email.
+- GET `api/Customers/Products/{id}` to get all the buildings, batteries, columns and elevators owned by
+a specific customer.
+
+- GET `api//Buildings/<x>` To get a specific Building.
+- PUT `api//Buildings/<x>` To modify a specific Building information.
 
 
 ## Explanatory video
