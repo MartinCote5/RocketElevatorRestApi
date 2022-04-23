@@ -23,21 +23,6 @@ namespace RocketElevatorREST.Controllers
             _bcontext = bcontext;
         }
 
-        // GET: api/Columns/{id}
-        [HttpGet("portal/{id}")]
-        public async Task<ActionResult<IEnumerable<Column>>> GetColumnsForPortal(long id)
-        {
-            Battery battery = _bcontext.batteries.Where(b => b.Id == id).First(); 
-            var column = await _context.columns.Where(c => c.battery_id == battery.Id).ToListAsync(); 
-            if (column == null)
-            {
-                return NotFound();
-            }
-            return column;
-        }
-
-
-
         // GET: api/Batteries/{id}
         [HttpGet("portal/{id}")]
         public async Task<ActionResult<IEnumerable<Column>>> GetColumnForPortal2(long id)

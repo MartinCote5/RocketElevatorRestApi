@@ -31,20 +31,7 @@ namespace RocketElevatorREST.Controllers
             return await _context.elevators.ToListAsync();                 
         }
 
-        // GET: api/Elevators/{id}
-        [HttpGet("portal/{id}")]
-        public async Task<ActionResult<IEnumerable<Elevator>>> GetElevatorsForPortal(long id)
-        {
-            Column column = _colcontext.columns.Where(b => b.Id == id).First(); 
-            var elevator = await _context.elevators.Where(c => c.column_id == column.Id).ToListAsync(); 
-            if (elevator == null)
-            {
-                return NotFound();
-            }
-            return elevator;
-        }
 
-    
         // GET: api/Elevators/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Elevator>> GetElevators(long id)

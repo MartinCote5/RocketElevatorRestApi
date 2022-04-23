@@ -81,8 +81,6 @@ namespace RocketElevatorREST.Controllers
                 }
             }
 
-
-
             Product customerProducts = new Product{
                 buildings = buildings,
                 batteries = batteries,
@@ -92,6 +90,5 @@ namespace RocketElevatorREST.Controllers
 
             return customerProducts;
         }
-
     }
 }

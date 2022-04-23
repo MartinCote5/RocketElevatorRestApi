@@ -46,22 +46,6 @@ namespace RocketElevatorREST.Controllers
             return building;
         }
 
-        
-
-
-        // GET: api/Buildings/portal/{id}
-        [HttpGet("portal/{id}")]
-        public async Task<ActionResult<IEnumerable<Building>>> GetBuildingForPortal(long id)
-        {
-            Customer customer = _cuscontext.customers.Where(c => c.Id == id).First(); 
-            var building = await _context.buildings.Where(b => b.customer_id == customer.Id).ToListAsync(); 
-            if (building == null)
-            {
-                return NotFound();
-            }
-            return building;
-        }
-
         // GET: api/Buildings
         [HttpGet("intervention")]
         public async Task<ActionResult<IEnumerable<Building>>> GetBuildings()
